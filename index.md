@@ -1,17 +1,19 @@
-## Hello github page
+## Data Science in Education with R
 
-### Link
+### Chapter One
 
-Note the relative link starting with a slash before the html file.
 
-The index.md is used to customize the github page's home page, 
-The following link directs to the slide.
 
 Code: `[slide link](/Overview.html)`
-Code: `[chapter 3](/chapter3/tabulation.html)`
 
 Result:
 
 [slide link](/Overview.html)
 
-[chapter 3](/chapter3/tabulation.html)
+### Chapter 2
+
+[chapter 2](/class2/data_preparation.html)
+
+### Chapter 3
+
+[chapter 3](/class3/tabulation.html)

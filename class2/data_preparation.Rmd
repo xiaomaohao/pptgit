@@ -1,0 +1,284 @@
+---
+title: "Data Preparation"
+subtitle: "second class"
+author: "Yangyong Ye"
+institute: "SOE, RUE"
+date: "2020/11/16 (updated: `r Sys.Date()`)"
+output:
+  xaringan::moon_reader:
+    css: [chocolate, chocolate-fonts]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+# Rstudio Intro
+  
+Intro panel:source/console/environment/files/plots/packages/help/viewer
+
+Exercise: 
+1. create a script, and save it, and open
+
+2. create a project, put a data in it.
+
+3. install package, like "tidyverse", it is important to change **mirror source**.
+
+4. options/appearance, setup theme.
+
+---
+# Data I/O
+
++ readr:.csv data.
+
++ haven: reads SPSS, Stata, and SAS files.
+
++ readxl: readxl reads excel files (both .xls and .xlsx).
+
++ read_json: json data.
+
++ read_ogr: write_rds() and read_rds() are uniform wrappers around the base functions readRDS() and saveRDS().
+
++ **rio**: import, export, convert
+
+---
+# Commonly Used Functions
+
+- ?
+- str
+- summary
+- %in%
+- head,tail
+- with
+- round,n,sum,mean,sd
+- length,dim,ncol, nrow,names,colnames,rownames,
+- rep,seq,rev,sample,ifelse,list,
+
+---
+
+# [tidyverse](https://www.tidyverse.org) packages:
+
+- ggplot2, for data visualisation.
+
+- dplyr, for data manipulation.
+
+- tidyr, for data tidying.
+
+- readr, for data import.
+
+- purrr, for functional programming.
+
+- tibble, for tibbles, a modern re-imagining of data frames.
+
+- stringr, for strings.
+
+- forcats, for factors.
+
+---
+# Colummn Manipulation Overview
+
+  - select
+  
+  - rename
+  
+  - relocate
+  
+  - mutate
+  
+  - recode
+  
+---
+
+# Overview of selection features [tidyselect](https://tidyselect.r-lib.org/reference/language.html)
+
+Tidyverse selections implement a dialect of R where operators make it easy to select variables:
+
+- : for selecting a range of consecutive variables.
+
+- ! for taking the complement of a set of variables.
+
+- & and | for selecting the intersection or the union of two sets of variables.
+
+- c() for combining selections.
+
+In addition, you can use selection helpers. Some helpers select specific columns:
+
+- everything(): Matches all variables.
+
+- last_col(): Select last variable, possibly with an offset.
+
+---
+
+# Overview of selection features_1
+- These helpers select variables by matching patterns in their names:
+
+  - starts_with(): Starts with a prefix.
+
+  - ends_with(): Ends with a suffix.
+
+  - contains(): Contains a literal string.
+
+  - matches(): Matches a regular expression.
+
+  - num_range(): Matches a numerical range like x01, x02, x03.
+
+- These helpers select variables from a character vector:
+
+  - all_of(): Matches variable names in a character vector. All names must be present, otherwise an out-of-bounds error is thrown.
+
+  - any_of(): Same as all_of(), except that no error is thrown for names that don't exist.
+
+- This helper selects variables with a function:
+
+   - where(): Applies a function to all variables and selects those for which the function returns TRUE.
+
+
+---
+
+# Row manipulation
+
+  - filter
+  
+  - arrange
+  
+  - slice: slice_head, slice_tail, slice_sample, slice_min, slice_max
+
+
+---
+# filter: conditions
+
+- R provides the standard suite: >, >=, <, <=, != (not equal), and == (equal).
+
+- Boolean operators yourself: & is ??and??, | is ??or??, and ! is ??not??.,
+
+
+---
+
+# Multiple column
+
+  - across
+  
+  - group_by & summarize
+  
+  - count
+  
+  - rowwise & c_across
+
+??? this is not right
+  
+---
+
+# Separate & unite
+
+  - extract
+  
+  - separate
+  
+  - unite
+
+---
+
+# TWO TABLE VERBS
+
+- Mutating Joins 
+  — inner_join(), left_join(), right_join(), full_join()
+
+- Filtering Joins 
+  — semi_join(), anti_join()
+
+- Set Operations — union(), intersect(), setdiff()
+  - intersect(x, y): return only observations in both x and y
+  
+  - union(x, y): return unique observations in x and y
+  
+  - setdiff(x, y): return observations in x, but not in y
+
+
+---
+# long & wide [tidyr](https://tidyr.tidyverse.org/articles/pivot.html)
+
+- pivot_longer()
+
+- pivot_wider()
+
+---
+# Practice:
+
+* 学生id, 学校id， 城市id，是否独生子女、是否近视、是否恋爱、期中考试语文原始成绩、是否实行百分制
+
+* 只选择期中语文成绩实行100制的学生
+
+* 将语文成绩的变量名称更改为chinese, 将是否独生子女变量名称更改为child_only, 是否恋爱变更为in_love.
+
+---
+
+# First Impression
+
+- sjPlot:: view_df()
+
+- dplyr:: glimpse()
+
+- skimr::skim()
+
+- janitor::clean_names() & remove_empty()
+
+---
+
+# Missing value
+
+- visdat::vis_miss()
+
+- tidyr::drop_na()
+
+- tidyr::replace_na()
+
+- naniar::replace_with_na()
+
+- base::is.na()
+
+---
+# Missing value [naniar](http://naniar.njtierney.com/)
+
+Shorthand summaries for missing data:
+- n_miss() and n_complete()
+
+- pct_miss()and pct_complete()
+
+Numerical summaries of missing data in variables and cases:
+- miss_var_summary() and miss_var_table()
+
+- miss_case_summary(), miss_case_table()
+
+
+---
+
+# factor R4DS [15](https://r4ds.had.co.nz/factors.html)
+
+---
+
+# date and time R4DS [16](https://r4ds.had.co.nz/dates-and-times.html)
+
+---
+class: inverse middle
+# NEXT WEEK
+
+- [gtsummary](http://www.danieldsjoberg.com/gtsummary/)
+
+- [rstaix](https://rpkgs.datanovia.com/rstatix/)
+
+- [flextable](https://davidgohel.github.io/flextable/index.html)
+
+- [reactable](https://glin.github.io/reactable/)
+
+- install_packages: skimr, janitor, visdat, naniar, rstatix, gtsummary, flextable, DT,
+
+
+???
+
+教学反思，学生普通对于R语言熟练程度和理解的程度还比较低，所以细小的错误很多，影响了课程的进度，所以应当在课前明确课下预习的内容。并要求学习做必要的课下练习。这样才能提高课程的进度与成效。
+
+---
+class: inverse, middle, center
+
+# Thanks !

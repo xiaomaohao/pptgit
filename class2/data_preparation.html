@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Data Preparation</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Yangyong Ye" />
+    <script src="libs/header-attrs-2.5.3/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/chocolate.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/chocolate-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Data Preparation
+## second class
+### Yangyong Ye
+### SOE, RUE
+### 2020/11/16 (updated: 2020-11-21)
+
+---
+
+
+# Rstudio Intro
+  
+Intro panel:source/console/environment/files/plots/packages/help/viewer
+
+Exercise: 
+1. create a script, and save it, and open
+
+2. create a project, put a data in it.
+
+3. install package, like "tidyverse", it is important to change **mirror source**.
+
+4. options/appearance, setup theme.
+
+---
+# Data I/O
+
++ readr:.csv data.
+
++ haven: reads SPSS, Stata, and SAS files.
+
++ readxl: readxl reads excel files (both .xls and .xlsx).
+
++ read_json: json data.
+
++ read_ogr: write_rds() and read_rds() are uniform wrappers around the base functions readRDS() and saveRDS().
+
++ **rio**: import, export, convert
+
+---
+# Commonly Used Functions
+
+- ?
+- str
+- summary
+- %in%
+- head,tail
+- with
+- round,n,sum,mean,sd
+- length,dim,ncol, nrow,names,colnames,rownames,
+- rep,seq,rev,sample,ifelse,list,
+
+---
+
+# [tidyverse](https://www.tidyverse.org) packages:
+
+- ggplot2, for data visualisation.
+
+- dplyr, for data manipulation.
+
+- tidyr, for data tidying.
+
+- readr, for data import.
+
+- purrr, for functional programming.
+
+- tibble, for tibbles, a modern re-imagining of data frames.
+
+- stringr, for strings.
+
+- forcats, for factors.
+
+---
+# Colummn Manipulation Overview
+
+  - select
+  
+  - rename
+  
+  - relocate
+  
+  - mutate
+  
+  - recode
+  
+---
+
+# Overview of selection features [tidyselect](https://tidyselect.r-lib.org/reference/language.html)
+
+Tidyverse selections implement a dialect of R where operators make it easy to select variables:
+
+- : for selecting a range of consecutive variables.
+
+- ! for taking the complement of a set of variables.
+
+- &amp; and | for selecting the intersection or the union of two sets of variables.
+
+- c() for combining selections.
+
+In addition, you can use selection helpers. Some helpers select specific columns:
+
+- everything(): Matches all variables.
+
+- last_col(): Select last variable, possibly with an offset.
+
+---
+
+# Overview of selection features_1
+- These helpers select variables by matching patterns in their names:
+
+  - starts_with(): Starts with a prefix.
+
+  - ends_with(): Ends with a suffix.
+
+  - contains(): Contains a literal string.
+
+  - matches(): Matches a regular expression.
+
+  - num_range(): Matches a numerical range like x01, x02, x03.
+
+- These helpers select variables from a character vector:
+
+  - all_of(): Matches variable names in a character vector. All names must be present, otherwise an out-of-bounds error is thrown.
+
+  - any_of(): Same as all_of(), except that no error is thrown for names that don't exist.
+
+- This helper selects variables with a function:
+
+   - where(): Applies a function to all variables and selects those for which the function returns TRUE.
+
+
+---
+
+# Row manipulation
+
+  - filter
+  
+  - arrange
+  
+  - slice: slice_head, slice_tail, slice_sample, slice_min, slice_max
+
+
+---
+# filter: conditions
+
+- R provides the standard suite: &gt;, &gt;=, &lt;, &lt;=, != (not equal), and == (equal).
+
+- Boolean operators yourself: &amp; is ??and??, | is ??or??, and ! is ??not??.,
+
+
+---
+
+# Multiple column
+
+  - across
+  
+  - group_by &amp; summarize
+  
+  - count
+  
+  - rowwise &amp; c_across
+
+??? this is not right
+  
+---
+
+# Separate &amp; unite
+
+  - extract
+  
+  - separate
+  
+  - unite
+
+---
+
+# TWO TABLE VERBS
+
+- Mutating Joins 
+  — inner_join(), left_join(), right_join(), full_join()
+
+- Filtering Joins 
+  — semi_join(), anti_join()
+
+- Set Operations — union(), intersect(), setdiff()
+  - intersect(x, y): return only observations in both x and y
+  
+  - union(x, y): return unique observations in x and y
+  
+  - setdiff(x, y): return observations in x, but not in y
+
+
+---
+# long &amp; wide [tidyr](https://tidyr.tidyverse.org/articles/pivot.html)
+
+- pivot_longer()
+
+- pivot_wider()
+
+---
+# Practice:
+
+* 学生id, 学校id， 城市id，是否独生子女、是否近视、是否恋爱、期中考试语文原始成绩、是否实行百分制
+
+* 只选择期中语文成绩实行100制的学生
+
+* 将语文成绩的变量名称更改为chinese, 将是否独生子女变量名称更改为child_only, 是否恋爱变更为in_love.
+
+---
+
+# First Impression
+
+- sjPlot:: view_df()
+
+- dplyr:: glimpse()
+
+- skimr::skim()
+
+- janitor::clean_names() &amp; remove_empty()
+
+---
+
+# Missing value
+
+- visdat::vis_miss()
+
+- tidyr::drop_na()
+
+- tidyr::replace_na()
+
+- naniar::replace_with_na()
+
+- base::is.na()
+
+---
+# Missing value [naniar](http://naniar.njtierney.com/)
+
+Shorthand summaries for missing data:
+- n_miss() and n_complete()
+
+- pct_miss()and pct_complete()
+
+Numerical summaries of missing data in variables and cases:
+- miss_var_summary() and miss_var_table()
+
+- miss_case_summary(), miss_case_table()
+
+
+---
+
+# factor R4DS [15](https://r4ds.had.co.nz/factors.html)
+
+---
+
+# date and time R4DS [16](https://r4ds.had.co.nz/dates-and-times.html)
+
+---
+class: inverse middle
+# NEXT WEEK
+
+- [gtsummary](http://www.danieldsjoberg.com/gtsummary/)
+
+- [rstaix](https://rpkgs.datanovia.com/rstatix/)
+
+- [flextable](https://davidgohel.github.io/flextable/index.html)
+
+- [reactable](https://glin.github.io/reactable/)
+
+- install_packages: skimr, janitor, visdat, naniar, rstatix, gtsummary, flextable, DT,
+
+
+???
+
+教学反思，学生普通对于R语言熟练程度和理解的程度还比较低，所以细小的错误很多，影响了课程的进度，所以应当在课前明确课下预习的内容。并要求学习做必要的课下练习。这样才能提高课程的进度与成效。
+
+---
+class: inverse, middle, center
+
+# Thanks !
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
