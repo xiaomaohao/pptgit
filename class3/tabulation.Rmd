@@ -83,13 +83,13 @@ class: middle, inverse
 ---
 
 # [DT](https://rstudio.github.io/DT/)
-
 - ## datatable()
-
+--
 ```{r,message=FALSE}
 library(DT)
-library(magrittr)
-mtcars %>% head() %>% datatable()
+library(tidyverse)
+mtcars %>% 
+  select(mpg, cyl, disp, hp, drat, wt) %>% datatable()
 ```
 
 
