@@ -8,6 +8,18 @@
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/rladies.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/lucy-fonts.css" rel="stylesheet" />
+    <link href="libs/tile-view-0.2.4/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view-0.2.4/tile-view.js"></script>
+    <script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
+    <script src="libs/jquery-1.12.4/jquery.min.js"></script>
+    <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+    <script src="libs/datatables-binding-0.16/datatables.js"></script>
+    <link href="libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
+    <script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
+    <link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+    <script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+    <link rel="stylesheet" href="my_css.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -38,6 +50,7 @@ class: center, middle, inverse, title-slide
 
 
 
+
 ---
 
 # Tabulation packages
@@ -57,15 +70,20 @@ class: middle, inverse
 
 # [rstatix](https://rpkgs.datanovia.com/rstatix/index.html)
 
-- get_summary_stats()
+- ## get_summary_stats()
 
-- freq_table()
+- ## freq_table()
 
 ---
 
 # [flextable](https://davidgohel.github.io/flextable/)
 
-![functions](/03data_tabulation/flextable_functions.png)
+
+![funct](flextable_functions.png)
+
+
+
+
 
 
 
@@ -74,17 +92,28 @@ class: middle, inverse
 
 --
 
-- tbl_summary()
+- ## tbl_summary()
 
 --
 
-- tbl_cross()
+- ## tbl_cross()
 
 ---
 
 # [DT](https://rstudio.github.io/DT/)
 
-- datatable()
+- ## datatable()
+
+
+```r
+library(DT)
+library(magrittr)
+mtcars %&gt;% head() %&gt;% datatable()
+```
+
+<div id="htmlwidget-c7d374cc8c70845db767" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-c7d374cc8c70845db767">{"x":{"filter":"none","data":[["Mazda RX4","Mazda RX4 Wag","Datsun 710","Hornet 4 Drive","Hornet Sportabout","Valiant"],[21,21,22.8,21.4,18.7,18.1],[6,6,4,6,8,6],[160,160,108,258,360,225],[110,110,93,110,175,105],[3.9,3.9,3.85,3.08,3.15,2.76],[2.62,2.875,2.32,3.215,3.44,3.46],[16.46,17.02,18.61,19.44,17.02,20.22],[0,0,1,1,0,1],[1,1,1,0,0,0],[4,4,4,3,3,3],[4,4,1,1,2,1]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>mpg<\/th>\n      <th>cyl<\/th>\n      <th>disp<\/th>\n      <th>hp<\/th>\n      <th>drat<\/th>\n      <th>wt<\/th>\n      <th>qsec<\/th>\n      <th>vs<\/th>\n      <th>am<\/th>\n      <th>gear<\/th>\n      <th>carb<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8,9,10,11]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+
 
 ---
 # Practice 
@@ -96,13 +125,15 @@ class: middle, inverse
 - 做一个统计表，身高，体重
 
 ---
+class: inverse
+
 # NEXT WEEK
 
-- An Introduction R [Chapter 4](https://intro2r.com/graphics-base-r.html)
+- ## An Introduction R [Chapter 4](https://intro2r.com/graphics-base-r.html)
 
-- ggplot2:  Elegant Graphics for Data Analysis [Chapter 1-11](https://ggplot2-book.org/)
+- ## ggplot2:  Elegant Graphics for Data Analysis [Chapter 1-11](https://ggplot2-book.org/)
 
-- R4DS [Chapter 17-21](https://r4ds.had.co.nz/program-intro.html)
+- ## R4DS [Chapter 17-21](https://r4ds.had.co.nz/program-intro.html)
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

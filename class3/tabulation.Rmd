@@ -6,7 +6,7 @@ date: "2020/11/20 (updated: `r Sys.Date()`)"
 output:
   xaringan::moon_reader:
     lib_dir: libs
-    css: [default, rladies, lucy-fonts]
+    css: [default, rladies, lucy-fonts, my_css.css]
     nature:
       highlightStyle: github
       highlightLines: true
@@ -28,6 +28,9 @@ output:
   
   - regression table
 
+```{r xaringan-tile-view, echo=FALSE}
+xaringanExtra::use_tile_view()
+```
 
 
 ---
@@ -49,15 +52,20 @@ class: middle, inverse
 
 # [rstatix](https://rpkgs.datanovia.com/rstatix/index.html)
 
-- get_summary_stats()
+- ## get_summary_stats()
 
-- freq_table()
+- ## freq_table()
 
 ---
 
 # [flextable](https://davidgohel.github.io/flextable/)
 
-![functions](/03data_tabulation/flextable_functions.png)
+
+![funct](flextable_functions.png)
+
+
+
+
 
 
 
@@ -66,17 +74,24 @@ class: middle, inverse
 
 --
 
-- tbl_summary()
+- ## tbl_summary()
 
 --
 
-- tbl_cross()
+- ## tbl_cross()
 
 ---
 
 # [DT](https://rstudio.github.io/DT/)
 
-- datatable()
+- ## datatable()
+
+```{r,message=FALSE}
+library(DT)
+library(magrittr)
+mtcars %>% head() %>% datatable()
+```
+
 
 ---
 # Practice 
@@ -88,10 +103,12 @@ class: middle, inverse
 - 做一个统计表，身高，体重
 
 ---
+class: inverse
+
 # NEXT WEEK
 
-- An Introduction R [Chapter 4](https://intro2r.com/graphics-base-r.html)
+- ## An Introduction R [Chapter 4](https://intro2r.com/graphics-base-r.html)
 
-- ggplot2:  Elegant Graphics for Data Analysis [Chapter 1-11](https://ggplot2-book.org/)
+- ## ggplot2:  Elegant Graphics for Data Analysis [Chapter 1-11](https://ggplot2-book.org/)
 
-- R4DS [Chapter 17-21](https://r4ds.had.co.nz/program-intro.html)
+- ## R4DS [Chapter 17-21](https://r4ds.had.co.nz/program-intro.html)
