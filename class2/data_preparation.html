@@ -7,6 +7,7 @@
     <script src="libs/header-attrs-2.5.3/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/chocolate.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/chocolate-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="my_css.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -23,31 +24,32 @@ class: center, middle, inverse, title-slide
 
 # Rstudio Intro
   
-Intro panel:source/console/environment/files/plots/packages/help/viewer
+- Panel: source/console/environment/files/plots/packages/help/viewer
 
-Exercise: 
-1. create a script, and save it, and open
+- Exercise: 
 
-2. create a project, put a data in it.
+  1. create a script, save, close and open it
 
-3. install package, like "tidyverse", it is important to change **mirror source**.
+  2. create a project, put a data in it.
 
-4. options/appearance, setup theme.
+  3. install package, like "tidyverse", load it.
+
+  4. options/appearance, setup theme, it is important to change **mirror source**.
 
 ---
 # Data I/O
 
-+ readr:.csv data.
++ readr: reads .csv data.
 
 + haven: reads SPSS, Stata, and SAS files.
 
-+ readxl: readxl reads excel files (both .xls and .xlsx).
++ readxl: reads excel files (both .xls and .xlsx).
 
-+ read_json: json data.
++ read_json: reads json data.
 
 + read_ogr: write_rds() and read_rds() are uniform wrappers around the base functions readRDS() and saveRDS().
 
-+ **rio**: import, export, convert
++ **rio**: .red[import, export, convert]
 
 ---
 # Commonly Used Functions
@@ -56,11 +58,11 @@ Exercise:
 - str
 - summary
 - %in%
-- head,tail
+- head, tail
 - with
-- round,n,sum,mean,sd
-- length,dim,ncol, nrow,names,colnames,rownames,
-- rep,seq,rev,sample,ifelse,list,
+- round, n, sum, mean, sd
+- length, dim, ncol, nrow, names, colnames, rownames
+- rep, seq, rev, sample, ifelse, list
 
 ---
 
@@ -117,7 +119,7 @@ In addition, you can use selection helpers. Some helpers select specific columns
 
 ---
 
-# Overview of selection features_1
+# Overview of selection features [tidyselect](https://tidyselect.r-lib.org/reference/language.html)
 - These helpers select variables by matching patterns in their names:
 
   - starts_with(): Starts with a prefix.
@@ -162,7 +164,7 @@ In addition, you can use selection helpers. Some helpers select specific columns
 
 ---
 
-# Multiple column
+# Multiple column or row manipulation
 
   - across
   
@@ -172,7 +174,10 @@ In addition, you can use selection helpers. Some helpers select specific columns
   
   - rowwise &amp; c_across
 
-??? this is not right
+
+???
+
+this is not right
   
 ---
 
@@ -205,12 +210,13 @@ In addition, you can use selection helpers. Some helpers select specific columns
 ---
 # long &amp; wide [tidyr](https://tidyr.tidyverse.org/articles/pivot.html)
 
+
 - pivot_longer()
 
 - pivot_wider()
 
 ---
-# Practice:
+# Practice
 
 * 学生id, 学校id， 城市id，是否独生子女、是否近视、是否恋爱、期中考试语文原始成绩、是否实行百分制
 
@@ -259,11 +265,12 @@ Numerical summaries of missing data in variables and cases:
 
 
 ---
+class: center, middle
 
 # factor R4DS [15](https://r4ds.had.co.nz/factors.html)
 
 ---
-
+class: center, middle
 # date and time R4DS [16](https://r4ds.had.co.nz/dates-and-times.html)
 
 ---
@@ -283,7 +290,7 @@ class: inverse middle
 
 ???
 
-教学反思，学生普通对于R语言熟练程度和理解的程度还比较低，所以细小的错误很多，影响了课程的进度，所以应当在课前明确课下预习的内容。并要求学习做必要的课下练习。这样才能提高课程的进度与成效。
+教学反思，学生普通对于R语言熟练程度和理解的程度还比较低，细小错误很多，影响了课程的进度，应当在课前明确课下预习的内容。并要求学习做必要练习,这样才能提高课程的进度与成效。
 
 ---
 class: inverse, middle, center
