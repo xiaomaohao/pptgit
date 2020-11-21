@@ -111,7 +111,7 @@ class: center, middle,inverse
 ---
 class: center, middle,inverse
 
-# Why R?
+# Why .red[**R**]?
 ## small
 ## versatile
 ## beautiful
@@ -150,8 +150,8 @@ classplan <- data.frame(
   id = 1:8,
   content =c("week 1: \nintroduction", "week 2: data preparation", "week 3: data tabulation", "week 4: data visualization I",
              "week 5: data visualization II", "week 6: data analysis", "week 7: data analysis", "week 8: data creation"),
-  start= c("2018-11-13","2018-11-20","2018-11-27","2018-12-4","2018-12-11",
-           "2018-12-18","2018-12-25","2019-01-01")
+  start= c("2020-11-9","2020-11-16","2020-11-23","2020-11-30","2020-12-7",
+           "2020-12-14","2020-12-21","2020-12-28")
 )
 
 
