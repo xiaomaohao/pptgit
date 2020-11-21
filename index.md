@@ -1,19 +1,16 @@
-## Data Science in Education with R
 
-### Chapter One
+# Data Science in Education with R
 
+## Class PPT List
 
+### Overview
 
-Code: `[slide link](/Overview.html)`
+[Class 1](/class1/Overview.html)
 
-Result:
+### Data manipulation
 
-[slide link](/class1/Overview.html)
+[Class 2](/class2/data_preparation.html)
 
-### Chapter 2
+### Data tabulation
 
-[chapter 2](/class2/data_preparation.html)
-
-### Chapter 3
-
-[chapter 3](/class3/tabulation.html)
+[Class 3](/class3/tabulation.html)
