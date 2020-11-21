@@ -8,6 +8,7 @@ The index.md is used to customize the github page's home page,
 The following link directs to the slide.
 
 Code: `[slide link](/Overview.html)`
+Code: `[chapter 3](/chapter3/tabulation.html)`
 
 Result:
 
