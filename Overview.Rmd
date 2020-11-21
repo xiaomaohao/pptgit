@@ -110,10 +110,10 @@ class: center, middle,inverse
 class: center, middle,inverse
 
 # Why R?
-### small
-### versatile
-### beautiful
-### not hard to learn
+## small
+## versatile
+## beautiful
+## not hard to learn
 
 ???
 
