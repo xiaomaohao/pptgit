@@ -17,9 +17,13 @@ class: center, middle, inverse, title-slide
 ## second class
 ### Yangyong Ye
 ### SOE, RUE
-### 2020/11/16 (updated: 2020-11-21)
+### 2020/11/16 (updated: 2020-11-23)
 
 ---
+
+
+
+
 
 
 # Rstudio Intro
@@ -206,6 +210,327 @@ this is not right
   
   - setdiff(x, y): return observations in x, but not in y
 
+---
+
+count: false
+ 
+
+.panel1-join-auto[
+
+```r
+*library(gapminder)
+```
+]
+ 
+.panel2-join-auto[
+
+]
+
+---
+count: false
+ 
+
+.panel1-join-auto[
+
+```r
+library(gapminder)
+*library(tidyverse)
+```
+]
+ 
+.panel2-join-auto[
+
+]
+
+---
+count: false
+ 
+
+.panel1-join-auto[
+
+```r
+library(gapminder)
+library(tidyverse)
+*gapminder
+```
+]
+ 
+.panel2-join-auto[
+
+```
+# A tibble: 1,704 x 6
+   country     continent  year lifeExp      pop gdpPercap
+   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+ 1 Afghanistan Asia       1952    28.8  8425333      779.
+ 2 Afghanistan Asia       1957    30.3  9240934      821.
+ 3 Afghanistan Asia       1962    32.0 10267083      853.
+ 4 Afghanistan Asia       1967    34.0 11537966      836.
+ 5 Afghanistan Asia       1972    36.1 13079460      740.
+ 6 Afghanistan Asia       1977    38.4 14880372      786.
+ 7 Afghanistan Asia       1982    39.9 12881816      978.
+ 8 Afghanistan Asia       1987    40.8 13867957      852.
+ 9 Afghanistan Asia       1992    41.7 16317921      649.
+10 Afghanistan Asia       1997    41.8 22227415      635.
+# … with 1,694 more rows
+```
+]
+
+---
+count: false
+ 
+
+.panel1-join-auto[
+
+```r
+library(gapminder)
+library(tidyverse)
+gapminder %&gt;%
+* select(country, lifeExp, year)
+```
+]
+ 
+.panel2-join-auto[
+
+```
+# A tibble: 1,704 x 3
+   country     lifeExp  year
+   &lt;fct&gt;         &lt;dbl&gt; &lt;int&gt;
+ 1 Afghanistan    28.8  1952
+ 2 Afghanistan    30.3  1957
+ 3 Afghanistan    32.0  1962
+ 4 Afghanistan    34.0  1967
+ 5 Afghanistan    36.1  1972
+ 6 Afghanistan    38.4  1977
+ 7 Afghanistan    39.9  1982
+ 8 Afghanistan    40.8  1987
+ 9 Afghanistan    41.7  1992
+10 Afghanistan    41.8  1997
+# … with 1,694 more rows
+```
+]
+
+---
+count: false
+ 
+
+.panel1-join-auto[
+
+```r
+library(gapminder)
+library(tidyverse)
+gapminder %&gt;%
+  select(country, lifeExp, year) -&gt;
+* country_life
+```
+]
+ 
+.panel2-join-auto[
+
+]
+
+---
+count: false
+ 
+
+.panel1-join-auto[
+
+```r
+library(gapminder)
+library(tidyverse)
+gapminder %&gt;%
+  select(country, lifeExp, year) -&gt;
+  country_life
+*gapminder
+```
+]
+ 
+.panel2-join-auto[
+
+```
+# A tibble: 1,704 x 6
+   country     continent  year lifeExp      pop gdpPercap
+   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+ 1 Afghanistan Asia       1952    28.8  8425333      779.
+ 2 Afghanistan Asia       1957    30.3  9240934      821.
+ 3 Afghanistan Asia       1962    32.0 10267083      853.
+ 4 Afghanistan Asia       1967    34.0 11537966      836.
+ 5 Afghanistan Asia       1972    36.1 13079460      740.
+ 6 Afghanistan Asia       1977    38.4 14880372      786.
+ 7 Afghanistan Asia       1982    39.9 12881816      978.
+ 8 Afghanistan Asia       1987    40.8 13867957      852.
+ 9 Afghanistan Asia       1992    41.7 16317921      649.
+10 Afghanistan Asia       1997    41.8 22227415      635.
+# … with 1,694 more rows
+```
+]
+
+---
+count: false
+ 
+
+.panel1-join-auto[
+
+```r
+library(gapminder)
+library(tidyverse)
+gapminder %&gt;%
+  select(country, lifeExp, year) -&gt;
+  country_life
+gapminder %&gt;%
+* select(country, pop, year)
+```
+]
+ 
+.panel2-join-auto[
+
+```
+# A tibble: 1,704 x 3
+   country          pop  year
+   &lt;fct&gt;          &lt;int&gt; &lt;int&gt;
+ 1 Afghanistan  8425333  1952
+ 2 Afghanistan  9240934  1957
+ 3 Afghanistan 10267083  1962
+ 4 Afghanistan 11537966  1967
+ 5 Afghanistan 13079460  1972
+ 6 Afghanistan 14880372  1977
+ 7 Afghanistan 12881816  1982
+ 8 Afghanistan 13867957  1987
+ 9 Afghanistan 16317921  1992
+10 Afghanistan 22227415  1997
+# … with 1,694 more rows
+```
+]
+
+---
+count: false
+ 
+
+.panel1-join-auto[
+
+```r
+library(gapminder)
+library(tidyverse)
+gapminder %&gt;%
+  select(country, lifeExp, year) -&gt;
+  country_life
+gapminder %&gt;%
+  select(country, pop, year) -&gt;
+* country_pop
+```
+]
+ 
+.panel2-join-auto[
+
+]
+
+---
+count: false
+ 
+
+.panel1-join-auto[
+
+```r
+library(gapminder)
+library(tidyverse)
+gapminder %&gt;%
+  select(country, lifeExp, year) -&gt;
+  country_life
+gapminder %&gt;%
+  select(country, pop, year) -&gt;
+  country_pop
+*country_pop
+```
+]
+ 
+.panel2-join-auto[
+
+```
+# A tibble: 1,704 x 3
+   country          pop  year
+   &lt;fct&gt;          &lt;int&gt; &lt;int&gt;
+ 1 Afghanistan  8425333  1952
+ 2 Afghanistan  9240934  1957
+ 3 Afghanistan 10267083  1962
+ 4 Afghanistan 11537966  1967
+ 5 Afghanistan 13079460  1972
+ 6 Afghanistan 14880372  1977
+ 7 Afghanistan 12881816  1982
+ 8 Afghanistan 13867957  1987
+ 9 Afghanistan 16317921  1992
+10 Afghanistan 22227415  1997
+# … with 1,694 more rows
+```
+]
+
+---
+count: false
+ 
+
+.panel1-join-auto[
+
+```r
+library(gapminder)
+library(tidyverse)
+gapminder %&gt;%
+  select(country, lifeExp, year) -&gt;
+  country_life
+gapminder %&gt;%
+  select(country, pop, year) -&gt;
+  country_pop
+country_pop %&gt;%
+* full_join(country_life, by = c("country","year"))
+```
+]
+ 
+.panel2-join-auto[
+
+```
+# A tibble: 1,704 x 4
+   country          pop  year lifeExp
+   &lt;fct&gt;          &lt;int&gt; &lt;int&gt;   &lt;dbl&gt;
+ 1 Afghanistan  8425333  1952    28.8
+ 2 Afghanistan  9240934  1957    30.3
+ 3 Afghanistan 10267083  1962    32.0
+ 4 Afghanistan 11537966  1967    34.0
+ 5 Afghanistan 13079460  1972    36.1
+ 6 Afghanistan 14880372  1977    38.4
+ 7 Afghanistan 12881816  1982    39.9
+ 8 Afghanistan 13867957  1987    40.8
+ 9 Afghanistan 16317921  1992    41.7
+10 Afghanistan 22227415  1997    41.8
+# … with 1,694 more rows
+```
+]
+
+&lt;style&gt;
+.panel1-join-auto {
+  color: black;
+  width: 38.6060606060606%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel2-join-auto {
+  color: black;
+  width: 59.3939393939394%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel3-join-auto {
+  color: black;
+  width: NA%;
+  hight: 33%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+&lt;/style&gt;
+
+
+
 
 ---
 # long &amp; wide [tidyr](https://tidyr.tidyverse.org/articles/pivot.html)
@@ -214,6 +539,296 @@ this is not right
 - pivot_longer()
 
 - pivot_wider()
+
+---
+
+count: false
+ 
+
+.panel1-long_wide-auto[
+
+```r
+*gapminder
+```
+]
+ 
+.panel2-long_wide-auto[
+
+```
+# A tibble: 1,704 x 6
+   country     continent  year lifeExp      pop gdpPercap
+   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+ 1 Afghanistan Asia       1952    28.8  8425333      779.
+ 2 Afghanistan Asia       1957    30.3  9240934      821.
+ 3 Afghanistan Asia       1962    32.0 10267083      853.
+ 4 Afghanistan Asia       1967    34.0 11537966      836.
+ 5 Afghanistan Asia       1972    36.1 13079460      740.
+ 6 Afghanistan Asia       1977    38.4 14880372      786.
+ 7 Afghanistan Asia       1982    39.9 12881816      978.
+ 8 Afghanistan Asia       1987    40.8 13867957      852.
+ 9 Afghanistan Asia       1992    41.7 16317921      649.
+10 Afghanistan Asia       1997    41.8 22227415      635.
+# … with 1,694 more rows
+```
+]
+
+---
+count: false
+ 
+
+.panel1-long_wide-auto[
+
+```r
+gapminder %&gt;%
+* select(country, continent, lifeExp, year)
+```
+]
+ 
+.panel2-long_wide-auto[
+
+```
+# A tibble: 1,704 x 4
+   country     continent lifeExp  year
+   &lt;fct&gt;       &lt;fct&gt;       &lt;dbl&gt; &lt;int&gt;
+ 1 Afghanistan Asia         28.8  1952
+ 2 Afghanistan Asia         30.3  1957
+ 3 Afghanistan Asia         32.0  1962
+ 4 Afghanistan Asia         34.0  1967
+ 5 Afghanistan Asia         36.1  1972
+ 6 Afghanistan Asia         38.4  1977
+ 7 Afghanistan Asia         39.9  1982
+ 8 Afghanistan Asia         40.8  1987
+ 9 Afghanistan Asia         41.7  1992
+10 Afghanistan Asia         41.8  1997
+# … with 1,694 more rows
+```
+]
+
+---
+count: false
+ 
+
+.panel1-long_wide-auto[
+
+```r
+gapminder %&gt;%
+  select(country, continent, lifeExp, year) %&gt;%
+* pivot_wider(names_from =year,
+*             values_from = lifeExp)
+```
+]
+ 
+.panel2-long_wide-auto[
+
+```
+# A tibble: 142 x 14
+   country continent `1952` `1957` `1962` `1967` `1972` `1977` `1982` `1987`
+   &lt;fct&gt;   &lt;fct&gt;      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+ 1 Afghan… Asia        28.8   30.3   32.0   34.0   36.1   38.4   39.9   40.8
+ 2 Albania Europe      55.2   59.3   64.8   66.2   67.7   68.9   70.4   72  
+ 3 Algeria Africa      43.1   45.7   48.3   51.4   54.5   58.0   61.4   65.8
+ 4 Angola  Africa      30.0   32.0   34     36.0   37.9   39.5   39.9   39.9
+ 5 Argent… Americas    62.5   64.4   65.1   65.6   67.1   68.5   69.9   70.8
+ 6 Austra… Oceania     69.1   70.3   70.9   71.1   71.9   73.5   74.7   76.3
+ 7 Austria Europe      66.8   67.5   69.5   70.1   70.6   72.2   73.2   74.9
+ 8 Bahrain Asia        50.9   53.8   56.9   59.9   63.3   65.6   69.1   70.8
+ 9 Bangla… Asia        37.5   39.3   41.2   43.5   45.3   46.9   50.0   52.8
+10 Belgium Europe      68     69.2   70.2   70.9   71.4   72.8   73.9   75.4
+# … with 132 more rows, and 4 more variables: `1992` &lt;dbl&gt;, `1997` &lt;dbl&gt;,
+#   `2002` &lt;dbl&gt;, `2007` &lt;dbl&gt;
+```
+]
+
+---
+count: false
+ 
+
+.panel1-long_wide-auto[
+
+```r
+gapminder %&gt;%
+  select(country, continent, lifeExp, year) %&gt;%
+  pivot_wider(names_from =year,
+              values_from = lifeExp) -&gt;
+* gapminder_life_exp_wide
+```
+]
+ 
+.panel2-long_wide-auto[
+
+]
+
+---
+count: false
+ 
+
+.panel1-long_wide-auto[
+
+```r
+gapminder %&gt;%
+  select(country, continent, lifeExp, year) %&gt;%
+  pivot_wider(names_from =year,
+              values_from = lifeExp) -&gt;
+  gapminder_life_exp_wide
+*gapminder_life_exp_wide
+```
+]
+ 
+.panel2-long_wide-auto[
+
+```
+# A tibble: 142 x 14
+   country continent `1952` `1957` `1962` `1967` `1972` `1977` `1982` `1987`
+   &lt;fct&gt;   &lt;fct&gt;      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+ 1 Afghan… Asia        28.8   30.3   32.0   34.0   36.1   38.4   39.9   40.8
+ 2 Albania Europe      55.2   59.3   64.8   66.2   67.7   68.9   70.4   72  
+ 3 Algeria Africa      43.1   45.7   48.3   51.4   54.5   58.0   61.4   65.8
+ 4 Angola  Africa      30.0   32.0   34     36.0   37.9   39.5   39.9   39.9
+ 5 Argent… Americas    62.5   64.4   65.1   65.6   67.1   68.5   69.9   70.8
+ 6 Austra… Oceania     69.1   70.3   70.9   71.1   71.9   73.5   74.7   76.3
+ 7 Austria Europe      66.8   67.5   69.5   70.1   70.6   72.2   73.2   74.9
+ 8 Bahrain Asia        50.9   53.8   56.9   59.9   63.3   65.6   69.1   70.8
+ 9 Bangla… Asia        37.5   39.3   41.2   43.5   45.3   46.9   50.0   52.8
+10 Belgium Europe      68     69.2   70.2   70.9   71.4   72.8   73.9   75.4
+# … with 132 more rows, and 4 more variables: `1992` &lt;dbl&gt;, `1997` &lt;dbl&gt;,
+#   `2002` &lt;dbl&gt;, `2007` &lt;dbl&gt;
+```
+]
+
+---
+count: false
+ 
+
+.panel1-long_wide-auto[
+
+```r
+gapminder %&gt;%
+  select(country, continent, lifeExp, year) %&gt;%
+  pivot_wider(names_from =year,
+              values_from = lifeExp) -&gt;
+  gapminder_life_exp_wide
+gapminder_life_exp_wide %&gt;%
+* pivot_longer(`1952`:`2007`,
+*              names_to = "year",
+*              values_to = "lifeExp")
+```
+]
+ 
+.panel2-long_wide-auto[
+
+```
+# A tibble: 1,704 x 4
+   country     continent year  lifeExp
+   &lt;fct&gt;       &lt;fct&gt;     &lt;chr&gt;   &lt;dbl&gt;
+ 1 Afghanistan Asia      1952     28.8
+ 2 Afghanistan Asia      1957     30.3
+ 3 Afghanistan Asia      1962     32.0
+ 4 Afghanistan Asia      1967     34.0
+ 5 Afghanistan Asia      1972     36.1
+ 6 Afghanistan Asia      1977     38.4
+ 7 Afghanistan Asia      1982     39.9
+ 8 Afghanistan Asia      1987     40.8
+ 9 Afghanistan Asia      1992     41.7
+10 Afghanistan Asia      1997     41.8
+# … with 1,694 more rows
+```
+]
+
+---
+count: false
+ 
+
+.panel1-long_wide-auto[
+
+```r
+gapminder %&gt;%
+  select(country, continent, lifeExp, year) %&gt;%
+  pivot_wider(names_from =year,
+              values_from = lifeExp) -&gt;
+  gapminder_life_exp_wide
+gapminder_life_exp_wide %&gt;%
+  pivot_longer(`1952`:`2007`,
+               names_to = "year",
+               values_to = "lifeExp") %&gt;%
+* mutate(year=as.numeric(year))
+```
+]
+ 
+.panel2-long_wide-auto[
+
+```
+# A tibble: 1,704 x 4
+   country     continent  year lifeExp
+   &lt;fct&gt;       &lt;fct&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+ 1 Afghanistan Asia       1952    28.8
+ 2 Afghanistan Asia       1957    30.3
+ 3 Afghanistan Asia       1962    32.0
+ 4 Afghanistan Asia       1967    34.0
+ 5 Afghanistan Asia       1972    36.1
+ 6 Afghanistan Asia       1977    38.4
+ 7 Afghanistan Asia       1982    39.9
+ 8 Afghanistan Asia       1987    40.8
+ 9 Afghanistan Asia       1992    41.7
+10 Afghanistan Asia       1997    41.8
+# … with 1,694 more rows
+```
+]
+
+---
+count: false
+ 
+
+.panel1-long_wide-auto[
+
+```r
+gapminder %&gt;%
+  select(country, continent, lifeExp, year) %&gt;%
+  pivot_wider(names_from =year,
+              values_from = lifeExp) -&gt;
+  gapminder_life_exp_wide
+gapminder_life_exp_wide %&gt;%
+  pivot_longer(`1952`:`2007`,
+               names_to = "year",
+               values_to = "lifeExp") %&gt;%
+  mutate(year=as.numeric(year)) -&gt;
+* gapminder_life_exp_long
+```
+]
+ 
+.panel2-long_wide-auto[
+
+]
+
+&lt;style&gt;
+.panel1-long_wide-auto {
+  color: black;
+  width: 38.6060606060606%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel2-long_wide-auto {
+  color: black;
+  width: 59.3939393939394%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel3-long_wide-auto {
+  color: black;
+  width: NA%;
+  hight: 33%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+&lt;/style&gt;
+
+
+
+
 
 ---
 # Practice

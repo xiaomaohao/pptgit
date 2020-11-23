@@ -14,6 +14,16 @@ output:
       countIncrementalSlides: false
 ---
 
+
+```{r, include = F}
+# This is the recommended set up for flipbooks
+# you might think about setting cache to TRUE as you gain practice --- building flipbooks from scratch can be time consuming
+knitr::opts_chunk$set(fig.width = 6, message = FALSE, warning = FALSE, comment = "", cache = F)
+library(flipbookr)
+library(tidyverse)
+```
+
+
 # Rstudio Intro
   
 - Panel: source/console/environment/files/plots/packages/help/viewer
@@ -198,6 +208,21 @@ this is not right
   
   - setdiff(x, y): return observations in x, but not in y
 
+---
+
+`r chunk_reveal("join")`
+```{r join, include=FALSE}
+library(gapminder)
+library(tidyverse)
+gapminder %>% 
+  select(country, lifeExp, year) -> 
+  country_life
+gapminder %>% 
+  select(country, pop, year) -> 
+  country_pop
+country_pop %>% 
+  full_join(country_life, by = c("country","year"))
+```
 
 ---
 # long & wide [tidyr](https://tidyr.tidyverse.org/articles/pivot.html)
@@ -206,6 +231,24 @@ this is not right
 - pivot_longer()
 
 - pivot_wider()
+
+---
+
+`r chunk_reveal("long_wide")`
+
+```{r long_wide, include=FALSE}
+gapminder %>%
+  select(country, continent, lifeExp, year) %>% 
+  pivot_wider(names_from =year,
+              values_from = lifeExp) ->
+  gapminder_life_exp_wide
+gapminder_life_exp_wide %>% 
+  pivot_longer(`1952`:`2007`,
+               names_to = "year",
+               values_to = "lifeExp") %>% 
+  mutate(year=as.numeric(year)) ->
+  gapminder_life_exp_long
+```
 
 ---
 # Practice
