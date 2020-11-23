@@ -480,9 +480,10 @@ flights2 %>%
 
 left_join(flights,airlines, by="carrier")
 
-
+flights2
+weather
 flights2 %>%
-  left_join(weather)
+  left_join(weather,by=c("origin","year","month","day"))
 
 flights2 %>%
   left_join(planes, by="tailnum")
@@ -509,6 +510,7 @@ flights %>%
   count(tailnum, sort = TRUE)
 
 #row binding------
+bind_rows()
 df1 <- tribble(
   ~x, ~y,
   1,  1,
@@ -524,10 +526,18 @@ intersect(df1, df2)
 union(df1, df2)
 setdiff(df1, df2)
 setdiff(df2, df1)
+bind_rows(df1,df2)
 
 
 #LONG&WIDE-----
 #tidyr----
+gapminder %>%
+  select(country, continent, lifeExp, year) %>%
+  pivot_wider(names_from =year,
+              names_prefix = "score",
+              names_sep = ".",
+              values_from = lifeExp)
+
 
 library(tidyr)
 library(dplyr)
@@ -973,6 +983,14 @@ messy_df <- data.frame(var1 = messy_vector,
 
 vis_guess(messy_df)
 vis_dat(messy_df)
+
+airquality %>% clean_names() %>% drop_na(solar_r) %>%
+  vis_miss()
+
+air_na <- airquality %>% clean_names() %>%
+  mutate(solar_r=replace_na(solar_r,99))
+
+
 
 # naniar----
 # package for dealing with missing values, this package is great

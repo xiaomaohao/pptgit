@@ -221,6 +221,7 @@ this is not right
 ---
 
 `r chunk_reveal("join")`
+
 ```{r join, include=FALSE}
 library(gapminder)
 library(tidyverse)
@@ -234,9 +235,50 @@ country_pop %>%
   full_join(country_life,
             by = c("country","year"))
 ```
+---
+
+
+# join
+`r chunk_reveal("lef", widths =c(50,50))`
+```{r lef, include=FALSE}
+library(nycflights13)
+
+# mutating joins: left_join,right_join, full_join, inner_join
+flights %>%
+  select(year:day, hour, origin, dest, tailnum, carrier) -> flights2
+flights2 %>%
+  left_join(airlines, by="carrier")
+
+flights2 %>%
+  left_join(weather,
+            by=c("origin","year","month","day"))
+
+flights2 %>%
+  left_join(airports, c("dest"="faa"))
+```
 
 ---
-# long & wide [tidyr](https://tidyr.tidyverse.org/articles/pivot.html)
+# anti & semi
+`r chunk_reveal("lef2")`
+
+```{r lef2, include=FALSE}
+
+flights %>%
+  count(dest, sort = TRUE) %>%
+  head(10) -> top_dest
+
+
+
+flights %>% semi_join(top_dest)
+flights %>% anti_join(top_dest)
+
+flights %>%
+  anti_join(planes, by = "tailnum") %>%
+  count(tailnum, sort = TRUE)
+
+```
+
+---# long & wide [tidyr](https://tidyr.tidyverse.org/articles/pivot.html)
 
 
 - pivot_longer()

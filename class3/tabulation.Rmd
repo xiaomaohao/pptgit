@@ -67,7 +67,7 @@ class: reverse
 `r chunk_reveal("basetable")`
 
 ```{r basetable, include=FALSE}
-data("mtcars")
+
 head(mtcars)
 table(mtcars$cyl)
 table(mtcars$cyl,mtcars$vs)
@@ -87,20 +87,22 @@ class: middle, inverse
 ---
 class: inverse
 
-`r chunk_reveal("rstatixtable")`
+`r chunk_reveal("rstatixtable", widths = c(60,40))`
 
 ```{r rstatixtable, include=FALSE}
+
 library(rstatix)
 data("ToothGrowth")
 ToothGrowth %>% 
-  get_summary_stats(len)
-
-ToothGrowth %>% 
-  get_summary_stats(len, type = "five_number")
-ToothGrowth %>% 
-  get_summary_stats(len, type = "mean_sd")
-ToothGrowth %>% 
-  get_summary_stats(len,dose, show = c("mean","sd", "median","iqr"))
+  get_summary_stats(len) 
+ToothGrowth %>% #ROTATE
+  get_summary_stats(len, type = "robust")
+ToothGrowth %>% #ROTATE
+  get_summary_stats(len, type = "five_number") 
+ToothGrowth %>% #ROTATE
+  get_summary_stats(len, type = "mean_sd") 
+ToothGrowth %>% #ROTATE
+  get_summary_stats(len,dose, show = c("mean","sd", "median","iqr")) #ROTATE
 
 ToothGrowth %>% 
   freq_table(supp, dose)
@@ -116,7 +118,7 @@ ToothGrowth %>%
 
 ---
 
-`r chunk_reveal("flextable")`
+`r chunk_reveal("flextable", widths = c(60,40))`
 
 ```{r flextable, include=FALSE}
 
@@ -127,19 +129,21 @@ student <- import("/Users/yangyongye/R/pptgit/sampledata/student_sample.dta")
 score_summary <- student %>% 
   drop_na(w2chn, w2mat, w2eng) %>%
   get_summary_stats(w2chn,
-                    w2mat, w2eng, type = "common")
+                    w2mat, w2eng, 
+                    type = "common")
 
 score_summary %>%
-  flextable(col_keys = c("variable","n",
-                         "min","max","mean","sd")) %>%
+  flextable(col_keys = c(
+    "variable","n","min","max","mean","sd")) %>%
   set_header_labels(variable="变量", n="数量",
-                    min="最小值",max="最大值",mean="均值",sd="标准差") %>% 
+                    min="最小值",max="最大值",
+                    mean="均值",sd="标准差") %>% 
   bold(bold = T, part="header") %>%
   bg(bg="grey80",part = "header") %>%
   color(i=3, j=4,color = "red") %>% 
   width(j=3, width = 0.7) %>% 
   hrule(rule = "exact") %>%
-  height(i=2, height = 0.4) %>% 
+  height(i=2, height = 0.4) %>%
   colformat_num(j=4:6, digits=1) %>% 
   set_caption(caption = "初中生期中语数外成绩统计表") %>% 
   footnote(i=1,j=2,
@@ -165,7 +169,7 @@ score_summary %>%
 
 ---
 
-`r chunk_reveal("gtsummarytable")`
+`r chunk_reveal("gtsummarytable", widths = c(50,50))`
 
 ```{r gtsummarytable, include=FALSE}
 library(gtsummary)
@@ -179,7 +183,8 @@ trial %>%
   add_overall() %>%
   add_n() %>%
   modify_header(label ~ "**Variable**") %>%
-  modify_spanning_header(c("stat_1","stat_2") ~ "**Treatment Received**") %>%
+  modify_spanning_header(
+    c("stat_1","stat_2") ~ "**Treatment Received**") %>%
   modify_footnote(
     starts_with("stat_") ~ "Median (IQR) or Frequency (%)"
   ) %>%
@@ -190,11 +195,9 @@ trial %>%
 ---
 
 # [DT](https://rstudio.github.io/DT/)
-- ## datatable()
---
+
 ```{r,message=FALSE}
 library(DT)
-library(tidyverse)
 mtcars %>% 
   select(mpg, cyl, disp, hp, drat, wt) %>% datatable()
 ```
