@@ -1,4 +1,4 @@
-## table learning 
+## table learning
 ## good packages for making table
 
 # kable and kableExtra: Format highly complex and beautiful table
@@ -39,7 +39,7 @@ data("ToothGrowth")
 
 #get_summary_stats()
 ToothGrowth %>% get_summary_stats(len)
-ToothGrowth %>% group_by(dose,supp) %>% 
+ToothGrowth %>% group_by(dose,supp) %>%
   get_summary_stats(len, type = "common")
 
 ToothGrowth %>% get_summary_stats(len, type = "robust")
@@ -56,6 +56,33 @@ ToothGrowth %>% freq_table(supp, dose)
 #不支持中???
 library(flextable)
 library(officer)
+library(rio)
+student <- import("sampledata/student_sample.dta")
+
+library(visdat)
+vis_miss(student)
+
+
+score_summary <- student %>% drop_na(w2chn, w2mat, w2eng) %>%
+  get_summary_stats(w2chn, w2mat, w2eng, type = "common")
+
+score_summary %>%
+  flextable(col_keys = c("variable","n", "min","max","mean","sd")) %>%
+  set_header_labels(variable="变量", n="数量",min="最小值",max="最大值",mean="均值",sd="标准差") %>%
+  bold(bold = T, part="header") %>%
+  bg(bg="grey80",part = "header") %>%
+  color(i=3, j=4,color = "red") %>%
+  width(j=3, width = 0.7) %>%
+  hrule(rule = "exact") %>% height(i=2, height = 0.4) %>%
+  colformat_num(j=4:6, digits=1) %>%
+  set_caption(caption = "初中生期中语数外成绩统计表") %>%
+  footnote(i=1,j=2,value=as_paragraph("包括七年级、九年级学生"),
+           ref_symbols = "a",
+           part="header")
+
+
+
+
 myft <- flextable(head(mtcars),
                   col_keys = c("am","carb","gear","mpg","drat"))
 myft
@@ -68,10 +95,10 @@ myft <- set_header_labels(myft,carb="# carb.")
 myft <- autofit(myft)
 myft
 
-myft %>%  italic(j=1) %>% bg(bg="#C90000",part = "header") %>% 
-  color(color="white",part = "header") %>% 
-  color(~drat>3.5,~drat,color = "red") %>% 
-  bold(~drat > 3.5, ~drat, bold = T) %>% 
+myft %>%  italic(j=1) %>% bg(bg="#C90000",part = "header") %>%
+  color(color="white",part = "header") %>%
+  color(~drat>3.5,~drat,color = "red") %>%
+  bold(~drat > 3.5, ~drat, bold = T) %>%
   autofit()
 
 print(myft, preview = "docx")
@@ -83,7 +110,7 @@ ft <- autofit(ft)
 ft
 ppt <- read_pptx()
 ppt <- add_slide(ppt, layout = "Title and Content", master = "Office Theme")
-ppt <- ph_with(ppt, value = ft, location = officer::ph_location_left()) 
+ppt <- ph_with(ppt, value = ft, location = officer::ph_location_left())
 
 print(ppt, target = "example.pptx")
 
@@ -116,12 +143,12 @@ ft
 
 library(tidyverse)
 mtt <- mtcars %>% rename("机关"=gear)
-myft <- flextable(head(mtcars), 
-                  col_keys = c("carb", "gear", "mpg", "drat" )) %>% 
-  font(fontname = "Hei",part = "header") %>% 
-  set_header_labels(carb="机关") %>% 
-  merge_v(j=~gear) %>% 
-  fix_border_issues() %>% 
+myft <- flextable(head(mtcars),
+                  col_keys = c("carb", "gear", "mpg", "drat" )) %>%
+  font(fontname = "Hei",part = "header") %>%
+  set_header_labels(carb="机关") %>%
+  merge_v(j=~gear) %>%
+  fix_border_issues() %>%
   dim_pretty()
 myft
 
@@ -150,19 +177,19 @@ trial2 <- trial %>% select(trt,age,grade)
 trial2 %>% tbl_summary()
 
 ##
-trial2 %>% tbl_summary(by = trt) %>% 
-  add_p(pvalue_fun = ~style_pvalue(.x, digits = 2)) %>% 
-  add_overall() %>% 
-  add_n() %>% 
-  modify_header(label ~ "**Variable**") %>% 
-  modify_spanning_header(c("stat_1","stat_2") ~ "**Treatment Received**") %>% 
+trial2 %>% tbl_summary(by = trt) %>%
+  add_p(pvalue_fun = ~style_pvalue(.x, digits = 2)) %>%
+  add_overall() %>%
+  add_n() %>%
+  modify_header(label ~ "**Variable**") %>%
+  modify_spanning_header(c("stat_1","stat_2") ~ "**Treatment Received**") %>%
   modify_footnote(
     starts_with("stat_") ~ "Median (IQR) or Frequency (%)"
-  ) %>% 
+  ) %>%
   bold_labels()
 
 #Modifying tbl_summary() function arguments
-trial2 %>% 
+trial2 %>%
   tbl_summary(
     by=trt,
     statistic = list(all_continuous() ~ "{mean} ({sd})",
@@ -172,7 +199,7 @@ trial2 %>%
     missing_text = "(Missing)"
   )
 
-trial %>% select(age, marker) %>% 
+trial %>% select(age, marker) %>%
   tbl_summary(type = all_continuous() ~ "continuous2",
               statistic = all_continuous() ~ c("{median} ({p25},{p75})","{min},{max}"),
               missing = "no")
@@ -180,8 +207,8 @@ trial %>% select(age, marker) %>%
 
 #tbl_cross()
 
-trial %>% 
-  tbl_cross(row = stage, col = trt, percent = "cell") %>% 
+trial %>%
+  tbl_cross(row = stage, col = trt, percent = "cell") %>%
   add_p()
 
 
@@ -255,9 +282,9 @@ efc %>%
 
 #descr()
 
-descr(efc, 
+descr(efc,
       e17age,
-      c160age, 
+      c160age,
       out = "browser",show=c("n","mean","sd","range","skewness"))
 
 efc %>% select(e42dep, e15relat, c172code) %>% descr(out = "txt")
@@ -419,7 +446,7 @@ table1(~ age + sex + wt | treat, data=dat, topclass="Rtable1-grid Rtable1-shade 
 
 
 #
-library(MatchIt) 
+library(MatchIt)
 data(lalonde)
 
 lalonde$treat    <- factor(lalonde$treat, levels=c(0, 1, 2), labels=c("Control", "Treatment", "P-value"))
@@ -486,7 +513,7 @@ library(dplyr)
 islands_tbl <- tibble(
   name = names(islands),
   size=islands
-) %>% arrange(desc(size)) %>% slice(1:10) 
+) %>% arrange(desc(size)) %>% slice(1:10)
 islands_tbl
 
 library(gt)
@@ -497,11 +524,11 @@ gt_tbl <- gt_tab %>% tab_header(title="Large Landmasses of the World",
                                 subtitle = "The Top ten largest are presented")
 gt_tbl
 
-gt(islands_tbl[1:3,]) %>% 
+gt(islands_tbl[1:3,]) %>%
   tab_header(title = md("**Large Landmasses of the World**"),
              subtitle = md("The *top two* largest are presented"))
 
-gt_tbl <- gt_tbl %>%  tab_source_note(source_note = "Source: The World Almanac and Book of Facts:, 1975, page 406.") %>% 
+gt_tbl <- gt_tbl %>%  tab_source_note(source_note = "Source: The World Almanac and Book of Facts:, 1975, page 406.") %>%
   tab_source_note(source_note = md("Reference: McNeil, d. r. (1997),*Interactive Data Analysis*.Wiley."))
 gt_tbl <- gt_tbl %>% tab_footnote(
   footnote = "The America.",
@@ -514,15 +541,15 @@ gt_tbl
 
 # Determine the row that contains the
 # largest landmass ('Asia')
-largest <- 
-  islands_tbl %>% 
+largest <-
+  islands_tbl %>%
   arrange(desc(size)) %>%
   slice(1) %>%
   pull(name)
 
 # Create two additional footnotes, using the
 # `columns` and `where` arguments of `data_cells()`
-gt_tbl <- 
+gt_tbl <-
   gt_tbl %>%
   tab_footnote(
     footnote = md("The **largest** by area."),
@@ -541,7 +568,7 @@ gt_tbl <-
 gt_tbl
 
 # the stub
-gt_tbl <- 
+gt_tbl <-
   islands_tbl %>%
   gt(rowname_col = "name")
 
@@ -552,7 +579,7 @@ gt_tbl <- gt_tbl %>% tab_stubhead_label(label = "landmass")
 gt_tbl
 
 ##
-gt_tbl <- 
+gt_tbl <-
   gt_tbl %>%
   tab_header(
     title = "Large Landmasses of the World",
@@ -583,8 +610,8 @@ gt_tbl
 
 # Create three row groups with the
 # `tab_row_group()` function
-gt_tbl <- 
-  gt_tbl %>% 
+gt_tbl <-
+  gt_tbl %>%
   tab_row_group(
     group = "continent",
     rows = 1:6
@@ -605,14 +632,14 @@ gt_tbl
 
 # Modify the `airquality` dataset by adding the year
 # of the measurements (1973) and limiting to 10 rows
-airquality_m <- 
+airquality_m <-
   airquality %>%
   mutate(Year = 1973L) %>%
   slice(1:10)
 
 # Create a display table using the `airquality`
 # dataset; arrange columns into groups
-gt_tbl <- 
+gt_tbl <-
   gt(data = airquality_m) %>%
   tab_header(
     title = "New York Air Quality Measurements",
@@ -633,7 +660,7 @@ gt_tbl
 # Move the time-based columns to the start of
 # the column series; modify the column labels of
 # the measurement-based columns
-gt_tbl <- 
+gt_tbl <-
   gt_tbl %>%
   cols_move_to_start(
     columns = vars(Year, Month, Day)
@@ -659,7 +686,7 @@ p
 
 #example 2
 p <- data.frame(
-  id = c(1, 2, 3, 4, 5), 
+  id = c(1, 2, 3, 4, 5),
   name = c("A1", "A2", "B1", "B2", "C1"),
   balance = accounting(c(52500, 36150, 25000, 18300, 7600), format = "d"),
   growth = percent(c(0.3, 0.3, 0.1, 0.15, 0.15), format = "d"),
@@ -669,8 +696,8 @@ p
 #example 3
 df <- data.frame(
   id = 1:10,
-  name = c("Bob", "Ashley", "James", "David", "Jenny", 
-           "Hans", "Leo", "John", "Emily", "Lee"), 
+  name = c("Bob", "Ashley", "James", "David", "Jenny",
+           "Hans", "Leo", "John", "Emily", "Lee"),
   age = c(28, 27, 30, 28, 29, 29, 27, 27, 31, 30),
   grade = c("C", "A", "A", "C", "B", "B", "B", "A", "C", "C"),
   test1_score = c(8.9, 9.5, 9.6, 8.9, 9.1, 9.3, 9.3, 9.9, 8.5, 8.6),
@@ -682,7 +709,7 @@ df <- data.frame(
 
 formattable(df, list(
   age = color_tile("lightblue", "orange"),
-  grade = formatter("span", style = x ~ ifelse(x == "A", 
+  grade = formatter("span", style = x ~ ifelse(x == "A",
                                                style(color = "green", font.weight = "bold"), NA)),
   area(col = c(test1_score, test2_score)) ~ normalize_bar("pink", 0.2),
   final_score = formatter("span",
@@ -719,7 +746,7 @@ knitr::kable(d, digits = 3, format.args = list(scientific = FALSE))
 # do not use the scientific notation
 knitr::kable(d, digits = 3, format.args = list(scientific = FALSE))
 # add commas to big numbers
-knitr::kable(d, digits = 3, format.args = list(big.mark = ",", 
+knitr::kable(d, digits = 3, format.args = list(big.mark = ",",
                                                scientific = FALSE))
 
 d[rbind(c(1, 1), c(2, 3), c(3, 2))] <- NA
@@ -743,19 +770,19 @@ library(kableExtra)
 dt <- mtcars[1:5, 1:6]
 
 dt %>% kable() %>% kable_styling()
-kable(dt) %>% 
+kable(dt) %>%
   kable_styling(bootstrap_options = c("striped", "hover"))
 
-kable(dt) %>% 
+kable(dt) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
 
-kable(dt) %>% 
+kable(dt) %>%
   kable_styling(bootstrap_options = "striped", full_width = F)
 
-kable(dt) %>% 
+kable(dt) %>%
   kable_styling(bootstrap_options = "striped", full_width = F, position = "left")
 
-kable(dt) %>% 
+kable(dt) %>%
   kable_styling(bootstrap_options = "striped", font_size = 9)
 
 # column/row specification
@@ -763,56 +790,56 @@ text_tbl <- data.frame(
   Items = c("Item 1", "Item 2", "Item 3"),
   Features = c(
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vehicula tempor ex. Morbi malesuada sagittis turpis, at venenatis nisl luctus a. ",
-    "In eu urna at magna luctus rhoncus quis in nisl. Fusce in velit varius, posuere risus et, cursus augue. Duis eleifend aliquam ante, a aliquet ex tincidunt in. ", 
+    "In eu urna at magna luctus rhoncus quis in nisl. Fusce in velit varius, posuere risus et, cursus augue. Duis eleifend aliquam ante, a aliquet ex tincidunt in. ",
     "Vivamus venenatis egestas eros ut tempus. Vivamus id est nisi. Aliquam molestie erat et sollicitudin venenatis. In ac lacus at velit scelerisque mattis. "
   )
 )
 
-kable(text_tbl) %>% 
-  kable_styling(full_width = F) %>% 
-  column_spec(1, bold=T, border_right = T) %>% 
+kable(text_tbl) %>%
+  kable_styling(full_width = F) %>%
+  column_spec(1, bold=T, border_right = T) %>%
   column_spec(2, width = "30em", background = "yellow")
 
-kable(dt) %>% 
-  kable_styling("striped", full_width = F) %>% 
-  column_spec(5:7, bold=T) %>% 
+kable(dt) %>%
+  kable_styling("striped", full_width = F) %>%
+  column_spec(5:7, bold=T) %>%
   row_spec(3:5, bold = T, color = "white", background = "#D7261E")
 
-kable(dt) %>% 
-  kable_styling("striped", full_width = F) %>% 
+kable(dt) %>%
+  kable_styling("striped", full_width = F) %>%
   row_spec(0, angle = -45)
 
 #cell/text specification
 library(dplyr)
-mtcars[1:10, 1:2] %>% 
+mtcars[1:10, 1:2] %>%
   mutate(
     car = row.names(.),
     mpg = cell_spec(mpg, color = ifelse(mpg>20, "red", "blue")),
     cyl = cell_spec(cyl, color = "white", align = "c", angle = 45,
                     background = factor(cyl, c(4, 6, 8),
                                         c("#666666","#999999", "#BBBBBB")))
-  ) %>% 
-  select(car, mpg, cyl) %>% 
-  kable(escape = F) %>% 
+  ) %>%
+  select(car, mpg, cyl) %>%
+  kable(escape = F) %>%
   kable_styling("striped", full_width = F)
 
 
-iris[1:10, ] %>% 
+iris[1:10, ] %>%
   mutate_if(is.numeric, function(x){
     cell_spec(x, bold = T,
               color = spec_color(x, end = 0.9),
               font_size = spec_font_size(x))
-  }) %>% 
+  }) %>%
   mutate(Species = cell_spec(
     Species, color = "white", bold = T,
     background = spec_color(1:10, end = 0.9, option = "B", direction = -1)
-  )) %>% 
-  kable(escape = F, align = 'c') %>% 
+  )) %>%
+  kable(escape = F, align = 'c') %>%
   kable_styling(c("striped", "condensed"), full_width = F)
 
 
 library(formattable)
-mtcars[1:5, 1:4] %>% 
+mtcars[1:5, 1:4] %>%
   mutate(
     car= row.names(.),
     mpg = color_tile("white", "orange")(mpg),
@@ -822,42 +849,42 @@ mtcars[1:5, 1:4] %>%
                   cell_spec(disp, color = "red", bold = T),
                   cell_spec(disp, color = "gredd", italic = T)),
     hp = color_bar("lightgreen")(hp)
-  ) %>% 
-  select(car, everything()) %>% 
-  kable(escape = F) %>% 
-  kable_styling("hover", full_width = F) %>% 
-  column_spec(5, width = "3cm") %>% 
+  ) %>%
+  select(car, everything()) %>%
+  kable(escape = F) %>%
+  kable_styling("hover", full_width = F) %>%
+  column_spec(5, width = "3cm") %>%
   add_header_above(c(" ", "hello"= 2, "World"=2))
 
 
 # grouped columns/rows
-kable(dt) %>% 
-  kable_styling("striped") %>% 
+kable(dt) %>%
+  kable_styling("striped") %>%
   add_header_above(c(" "=1, "Group 1"=2, "Group 2" =2, "Group 3"=2))
 
-kable(dt) %>% 
-  kable_styling(c("striped", "bordered")) %>% 
-  add_header_above(c(" ", "Group 1" =2, "Group 2" =2, "Group 3"=2)) %>% 
-  add_header_above(c(" ", "Group 4" = 4, "Group 5" =2))%>% 
+kable(dt) %>%
+  kable_styling(c("striped", "bordered")) %>%
+  add_header_above(c(" ", "Group 1" =2, "Group 2" =2, "Group 3"=2)) %>%
+  add_header_above(c(" ", "Group 4" = 4, "Group 5" =2))%>%
   add_header_above(c(" ", "GROUP 6" = 6))
 
-kable(mtcars[1:10, 1:6], caption = "Group Rows") %>% 
-  kable_styling("striped", full_width = F) %>% 
-  group_rows("group1", 4,7) %>% 
+kable(mtcars[1:10, 1:6], caption = "Group Rows") %>%
+  kable_styling("striped", full_width = F) %>%
+  group_rows("group1", 4,7) %>%
   group_rows("Group 2", 8, 10)
 
-kable(mtcars[1:10, 1:6], caption = "group rows") %>% 
-  kable_styling("striped", full_width = F) %>% 
+kable(mtcars[1:10, 1:6], caption = "group rows") %>%
+  kable_styling("striped", full_width = F) %>%
   group_rows(index = c(" " = 3, "Group -1" =4, "group 2"=3))
 
 
 
-kable(dt) %>% 
-  kable_styling("striped", full_width = F) %>% 
+kable(dt) %>%
+  kable_styling("striped", full_width = F) %>%
   group_rows("group1", 3, 5, label_row_css = "background-color: #666; color: #fff;")
 
-kable(dt) %>% 
-  kable_styling("striped", full_width = F) %>% 
+kable(dt) %>%
+  kable_styling("striped", full_width = F) %>%
   add_indent(c(1, 3, 5))
 
 collapse_rows_dt <- data.frame(C1 = c(rep("a", 10), rep("b",5)),
@@ -865,14 +892,14 @@ collapse_rows_dt <- data.frame(C1 = c(rep("a", 10), rep("b",5)),
                                       rep("d", 3)),
                                C3 = 1:15,
                                C4 = sample(c(0,1), 15, replace = TRUE))
-kable(collapse_rows_dt, align = "c") %>% 
-  kable_styling(full_width = F) %>% 
-  column_spec(1, bold = T) %>% 
+kable(collapse_rows_dt, align = "c") %>%
+  kable_styling(full_width = F) %>%
+  column_spec(1, bold = T) %>%
   collapse_rows(columns = 1:2,valign ="top")
 
 
-kable(dt, align = "c") %>% 
-  kable_styling(full_width = F) %>% 
+kable(dt, align = "c") %>%
+  kable_styling(full_width = F) %>%
   footnote(general = "here is a general commnents of the table",
            number = c("footnote 1;", "Footnote 2;"),
            alphabet = c("footnote A", "Footnote B;"),
@@ -891,11 +918,11 @@ kable(dt, align = "c") %>%
   )
 
 dt_footnote <- dt
-names(dt_footnote)[2] <- paste0(names(dt_footnote)[2], 
+names(dt_footnote)[2] <- paste0(names(dt_footnote)[2],
                                 footnote_marker_symbol(1))
-row.names(dt_footnote)[4] <- paste0(row.names(dt_footnote)[4], 
+row.names(dt_footnote)[4] <- paste0(row.names(dt_footnote)[4],
                                     footnote_marker_alphabet(1))
-kable(dt_footnote, align = "c", 
+kable(dt_footnote, align = "c",
       # Remember this escape = F
       escape = F) %>%
   kable_styling(full_width = F) %>%
@@ -905,12 +932,12 @@ kable(dt_footnote, align = "c",
            footnote_as_chunk = T)
 
 # html only features
-kable(cbind(mtcars, mtcars)) %>% 
-  kable_styling() %>% 
+kable(cbind(mtcars, mtcars)) %>%
+  kable_styling() %>%
   scroll_box(width = "500px", height = "200px")
 
-kable(cbind(mtcars, mtcars)) %>% 
-  kable_styling() %>% 
+kable(cbind(mtcars, mtcars)) %>%
+  kable_styling() %>%
   scroll_box(width = "100%", height = "200px")
 
 
@@ -986,20 +1013,20 @@ reactable(data, groupBy = "Type", columns = list(
 
 
 
-#janitor-----
+#janitor::tabyl-----
 library(dplyr)
 humans <- starwars %>%
   filter(species == "Human")
 library(janitor)
 t1 <- humans %>% tabyl(eye_color)
 t1
-t1 %>% adorn_totals("row") %>% 
+t1 %>% adorn_totals("row") %>%
   adorn_pct_formatting()
 
 t2 <- humans %>% tabyl(gender,eye_color)
 t2
-t2 %>% adorn_percentages("row") %>% 
-  adorn_pct_formatting(digits = 2) %>% 
+t2 %>% adorn_percentages("row") %>%
+  adorn_pct_formatting(digits = 2) %>%
   adorn_ns()
 class(t2)
 
@@ -1017,7 +1044,7 @@ humans %>%
 humans %>%
   tabyl(gender, eye_color) %>%
   adorn_totals(c("row", "col")) %>%
-  adorn_percentages("row") %>% 
+  adorn_percentages("row") %>%
   adorn_pct_formatting(rounding = "half up", digits = 0) %>%
   adorn_ns() %>%
   adorn_title("combined") %>%

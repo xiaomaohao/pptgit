@@ -11,7 +11,20 @@ output:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
+      ratio: 16:9
 ---
+
+
+```{r include = F}
+
+# This is the recommended set up for flipbooks
+# you might think about setting cache to TRUE as you gain practice --- building flipbooks from scratch can be time consuming
+knitr::opts_chunk$set(fig.width = 6, message = FALSE, warning = FALSE, comment = "", cache = F)
+library(flipbookr)
+library(officer)
+library(tidyverse)
+```
+
 
 
 # Data Tabulation
@@ -27,6 +40,7 @@ output:
   - test table(T, chi, anovo)
   
   - regression table
+
 
 ```{r xaringan-tile-view, echo=FALSE}
 xaringanExtra::use_tile_view()
@@ -46,6 +60,20 @@ xaringanExtra::use_tile_view()
 .footnote[**Bold** packages will be taught in class]
 
 
+---
+class: reverse
+# base package
+
+`r chunk_reveal("basetable")`
+
+```{r basetable, include=FALSE}
+data("mtcars")
+head(mtcars)
+table(mtcars$cyl)
+table(mtcars$cyl,mtcars$vs)
+summary(mtcars$mpg)
+```
+
 
 ---
 class: middle, inverse
@@ -57,6 +85,28 @@ class: middle, inverse
 - ## freq_table()
 
 ---
+class: inverse
+
+`r chunk_reveal("rstatixtable")`
+
+```{r rstatixtable, include=FALSE}
+library(rstatix)
+data("ToothGrowth")
+ToothGrowth %>% 
+  get_summary_stats(len)
+
+ToothGrowth %>% 
+  get_summary_stats(len, type = "five_number")
+ToothGrowth %>% 
+  get_summary_stats(len, type = "mean_sd")
+ToothGrowth %>% 
+  get_summary_stats(len,dose, show = c("mean","sd", "median","iqr"))
+
+ToothGrowth %>% 
+  freq_table(supp, dose)
+```
+
+---
 
 # [flextable](https://davidgohel.github.io/flextable/)
 
@@ -64,6 +114,39 @@ class: middle, inverse
 ![funct](flextable_functions.png)
 
 
+---
+
+`r chunk_reveal("flextable")`
+
+```{r flextable, include=FALSE}
+
+library(rio)
+library(flextable)
+student <- import("/Users/yangyongye/R/pptgit/sampledata/student_sample.dta")
+
+score_summary <- student %>% 
+  drop_na(w2chn, w2mat, w2eng) %>%
+  get_summary_stats(w2chn,
+                    w2mat, w2eng, type = "common")
+
+score_summary %>%
+  flextable(col_keys = c("variable","n",
+                         "min","max","mean","sd")) %>%
+  set_header_labels(variable="变量", n="数量",
+                    min="最小值",max="最大值",mean="均值",sd="标准差") %>% 
+  bold(bold = T, part="header") %>%
+  bg(bg="grey80",part = "header") %>%
+  color(i=3, j=4,color = "red") %>% 
+  width(j=3, width = 0.7) %>% 
+  hrule(rule = "exact") %>%
+  height(i=2, height = 0.4) %>% 
+  colformat_num(j=4:6, digits=1) %>% 
+  set_caption(caption = "初中生期中语数外成绩统计表") %>% 
+  footnote(i=1,j=2,
+           value=as_paragraph("包括七年级、九年级学生"),
+           ref_symbols = "a",
+           part="header")
+```
 
 
 
@@ -82,6 +165,30 @@ class: middle, inverse
 
 ---
 
+`r chunk_reveal("gtsummarytable")`
+
+```{r gtsummarytable, include=FALSE}
+library(gtsummary)
+library(gt)
+library(dplyr)
+
+trial %>% 
+  select(trt,age,grade) %>% 
+  tbl_summary(by = trt) %>%
+  add_p(pvalue_fun = ~style_pvalue(.x, digits = 2)) %>%
+  add_overall() %>%
+  add_n() %>%
+  modify_header(label ~ "**Variable**") %>%
+  modify_spanning_header(c("stat_1","stat_2") ~ "**Treatment Received**") %>%
+  modify_footnote(
+    starts_with("stat_") ~ "Median (IQR) or Frequency (%)"
+  ) %>%
+  bold_labels()
+```
+
+
+---
+
 # [DT](https://rstudio.github.io/DT/)
 - ## datatable()
 --
@@ -91,7 +198,6 @@ library(tidyverse)
 mtcars %>% 
   select(mpg, cyl, disp, hp, drat, wt) %>% datatable()
 ```
-
 
 ---
 # Practice 
