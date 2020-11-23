@@ -81,7 +81,7 @@ score_summary %>%
            part="header")
 
 
-
+##
 
 myft <- flextable(head(mtcars),
                   col_keys = c("am","carb","gear","mpg","drat"))
@@ -157,7 +157,6 @@ myft
 #remotes::install_github("ddsjoberg/gtsummary")
 #install.packages("gtsummary")
 library(gt)
-
 library(gtsummary)
 trial[c("trt", "age", "grade")] %>%
   tbl_summary(by = trt, missing = "no") %>%
