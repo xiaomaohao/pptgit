@@ -124,7 +124,12 @@ ToothGrowth %>%
 
 library(rio)
 library(flextable)
-student <- import("/Users/yangyongye/R/pptgit/sampledata/student_sample.dta")
+
+#student <- import("/sampledata/student_sample.dta") # does not work in R and R markdown
+#student <- import("../sampledata/student_sample.dta") #work in R markdown not in R file
+library(here)
+student <- import(here("sampledata","student_sample.dta"))  #work in R and R markdown file
+#student <- import("/Users/yangyongye/R/pptgit/sampledata/student_sample.dta") # work in both R and R markdown file
 
 score_summary <- student %>% 
   drop_na(w2chn, w2mat, w2eng) %>%
@@ -216,8 +221,10 @@ class: inverse
 
 # NEXT WEEK
 
-- ## An Introduction R [Chapter 4](https://intro2r.com/graphics-base-r.html)
+- ## R Graphics Cookbook, [Chapter 2-8](https://r-graphics.org) (required)
 
-- ## ggplot2:  Elegant Graphics for Data Analysis [Chapter 1-11](https://ggplot2-book.org/)
+- ## An Introduction R [Chapter 4](https://intro2r.com/graphics-base-r.html) (optional)
 
-- ## R4DS [Chapter 17-21](https://r4ds.had.co.nz/program-intro.html)
+- ## ggplot2:  Elegant Graphics for Data Analysis [Chapter 1-11](https://ggplot2-book.org/) (optional)
+
+- ## R4DS [Chapter 17-21](https://r4ds.had.co.nz/program-intro.html) (optional)

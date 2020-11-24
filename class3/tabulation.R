@@ -42,11 +42,11 @@ ToothGrowth %>% get_summary_stats(len)
 ToothGrowth %>% group_by(dose,supp) %>%
   get_summary_stats(len, type = "common")
 
-ToothGrowth %>% get_summary_stats(len, type = "robust")
-ToothGrowth %>% get_summary_stats(len, type = "five_number")
-ToothGrowth %>% get_summary_stats(len, type = "mean_sd")
-
-ToothGrowth %>% get_summary_stats(len,dose, show = c("mean","sd", "median","iqr"))
+ToothGrowth %>%
+  get_summary_stats(len, type = "robust") %>% #ROTATE
+  get_summary_stats(len, type = "five_number") %>% #ROTATE
+  get_summary_stats(len, type = "mean_sd") %>% #ROTATE
+  get_summary_stats(len,dose, show = c("mean","sd", "median","iqr")) #ROTATE
 
 # freq_table()
 ToothGrowth %>% freq_table(supp, dose)
@@ -166,8 +166,7 @@ trial[c("trt", "age", "grade")] %>%
   as_gt() %>%
   tab_spanner(columns = starts_with("stat_"), md("**Chemotherapy Treatment**"))
 
-#tbl_summary
-library(gtsummary)
+#tbl_summarylibrary(gtsummary)
 library(gt)
 library(dplyr)
 

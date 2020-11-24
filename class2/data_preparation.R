@@ -510,7 +510,7 @@ flights %>%
   count(tailnum, sort = TRUE)
 
 #row binding------
-bind_rows()
+
 df1 <- tribble(
   ~x, ~y,
   1,  1,

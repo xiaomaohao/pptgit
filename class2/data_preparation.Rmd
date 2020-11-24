@@ -57,6 +57,7 @@ student <- import("/Users/yangyongye/microcloud/projects/survey_data/ceps/2014-2
 + **rio**: .red[import, export, convert]
 
 ---
+
 # Commonly Used Functions
 
 - ?
@@ -240,6 +241,8 @@ country_pop %>%
 
 # join
 `r chunk_reveal("lef", widths =c(50,50))`
+
+
 ```{r lef, include=FALSE}
 library(nycflights13)
 
@@ -252,22 +255,20 @@ flights2 %>%
 flights2 %>%
   left_join(weather,
             by=c("origin","year","month","day"))
-
 flights2 %>%
   left_join(airports, c("dest"="faa"))
 ```
+
 
 ---
 # anti & semi
 `r chunk_reveal("lef2")`
 
-```{r lef2, include=FALSE}
 
+```{r lef2, include=FALSE}
 flights %>%
   count(dest, sort = TRUE) %>%
   head(10) -> top_dest
-
-
 
 flights %>% semi_join(top_dest)
 flights %>% anti_join(top_dest)
@@ -278,7 +279,9 @@ flights %>%
 
 ```
 
----# long & wide [tidyr](https://tidyr.tidyverse.org/articles/pivot.html)
+---
+
+# long & wide [tidyr](https://tidyr.tidyverse.org/articles/pivot.html)
 
 
 - pivot_longer()

@@ -56,6 +56,7 @@ class: center, middle, inverse, title-slide
 + **rio**: .red[import, export, convert]
 
 ---
+
 # Commonly Used Functions
 
 - ?
@@ -820,7 +821,6 @@ flights2 %&gt;%
 flights2 %&gt;%
   left_join(weather,
             by=c("origin","year","month","day"))
-
 *flights2
 ```
 ]
@@ -899,7 +899,6 @@ flights2 %&gt;%
 flights2 %&gt;%
   left_join(weather,
             by=c("origin","year","month","day"))
-
 flights2 %&gt;%
 * left_join(airports, c("dest"="faa"))
 ```
@@ -988,6 +987,9 @@ flights2 %&gt;%
   font-size: 80%
 }
 &lt;/style&gt;
+
+
+
 
 
 
@@ -1086,8 +1088,6 @@ flights %&gt;%
   count(dest, sort = TRUE) %&gt;%
   head(10) -&gt; top_dest
 
-
-
 *flights %&gt;% semi_join(top_dest)
 ```
 ]
@@ -1124,8 +1124,6 @@ count: false
 flights %&gt;%
   count(dest, sort = TRUE) %&gt;%
   head(10) -&gt; top_dest
-
-
 
 flights %&gt;% semi_join(top_dest)
 *flights %&gt;% anti_join(top_dest)
@@ -1183,8 +1181,6 @@ count: false
 flights %&gt;%
   count(dest, sort = TRUE) %&gt;%
   head(10) -&gt; top_dest
-
-
 
 flights %&gt;% semi_join(top_dest)
 flights %&gt;% anti_join(top_dest)
@@ -1263,8 +1259,6 @@ count: false
 flights %&gt;%
   count(dest, sort = TRUE) %&gt;%
   head(10) -&gt; top_dest
-
-
 
 flights %&gt;% semi_join(top_dest)
 flights %&gt;% anti_join(top_dest)
@@ -1345,8 +1339,6 @@ flights %&gt;%
   count(dest, sort = TRUE) %&gt;%
   head(10) -&gt; top_dest
 
-
-
 flights %&gt;% semi_join(top_dest)
 flights %&gt;% anti_join(top_dest)
 
@@ -1424,8 +1416,6 @@ count: false
 flights %&gt;%
   count(dest, sort = TRUE) %&gt;%
   head(10) -&gt; top_dest
-
-
 
 flights %&gt;% semi_join(top_dest)
 flights %&gt;% anti_join(top_dest)
@@ -1525,7 +1515,12 @@ flights %&gt;%
 
 
 
----# long &amp; wide [tidyr](https://tidyr.tidyverse.org/articles/pivot.html)
+
+
+
+---
+
+# long &amp; wide [tidyr](https://tidyr.tidyverse.org/articles/pivot.html)
 
 
 - pivot_longer()
