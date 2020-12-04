@@ -14,3 +14,7 @@
 ### Data tabulation
 
 [Class 3](/class3/tabulation.html)
+
+### Assignment I
+
+[Assignment](/assignment/assignment_1.html)
