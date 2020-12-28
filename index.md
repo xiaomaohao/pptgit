@@ -17,4 +17,8 @@
 
 ### Assignment I
 
-[Assignment](/assignment/assignment_1.html)
+[Assignment I](/assignment/assignment_1.html)
+
+### Assignment II
+
+[Assignment II](/assignment/assignment_2.html)
