@@ -1,0 +1,27 @@
+---
+title: "Data Visualization"
+subtitle: "series II"
+author: "Yangyong Ye"
+institute: "SOE, RUC"
+date: "2020/12/7 (updated: `r Sys.Date()`)"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+# Content this week
+
+- extra graph: lollipop, dumpbell, pie, donut, map
+- graph editing: font, theme, scale, color, combo
+
+---
+
+# The next weeks
+
+- 教育统计学 第章
+- [Quantitative Research Methods for Political Science, Public Policy and Public Administration: 4th Edition With Applications in R: chapter 4-6](https://bookdown.org/ripberjt/qrmbook/)
+- [Seeing Theory](https://seeing-theory.brown.edu/index.html#firstPage)

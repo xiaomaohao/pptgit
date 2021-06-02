@@ -729,17 +729,17 @@ var_mean <- ttrd %>% select(index, num_range("V", 20:43)) %>%
   gather(V20:V43, key = "vars", value = "valu") %>%
   group_by(vars) %>%
   summarise(valu = mean(valu)) %>%
-  mutate(mis = c("言语粗俗，不懂礼貌","乱扔垃圾，不讲卫生","仪容仪表不合规范", "对老师或家长撒谎",
-                           "不交作业", "作业抄袭", "考试作弊","迟到、早退、旷课等不守作息制度的行为",
-                           "听课不认真，如睡觉、看课外书等", "校级班级集体活动时喧闹，不听指挥",
-                           "扰乱课堂秩序，如交头接耳、喧哗吵闹", "课间时追逐打闹",
-                           "不认真完成校内班内值日活动", "不服管教，顶撞老师",
-                           "在校内外吸烟、酗酒", "赌博、吸毒",
-                           "观看、收听色情、淫秽音像制品、读物",
+  mutate(mis = c("�?语粗俗，不懂礼貌","乱扔垃圾，不讲卫�?","仪容仪表不合规范", "对�?�师或家长撒�?",
+                           "不交作业", "作业抄袭", "考试作弊","迟到、早�?、旷课等不守作息制度的行�?",
+                           "听课不认真，如睡觉�?�看课外书等", "校级班级集体活动时喧闹，不听指挥",
+                           "扰乱课堂秩序，如交头接�?��?�喧哗吵�?", "课间时追逐打�?",
+                           "不认真完成校内班内�?�日活动", "不服管教，顶撞�?�师",
+                           "在校内外吸烟、酗�?", "赌博、吸�?",
+                           "观看、收听色情�?�淫秽音像制品�?�读�?",
                            "进入营业性歌舞厅、游戏厅、网吧等场所",
-                           "辱骂甚至殴打教师", "辱骂他人，与他人打架", "参与团伙或聚众斗殴",
-                           "故意损坏公物或他人物品",
-                           "偷窃或强行向他人索要财物","携带管制刀具等危险品进校园"))
+                           "辱骂甚至殴打教师", "辱骂他人，与他人打架", "参与团伙或聚众斗�?",
+                           "故意损坏公物或他人物�?",
+                           "偷窃或强行向他人索要财物","携带管制�?具等危险品进校园"))
 
 
 var_mean$mis <- reorder(var_mean$mis, var_mean$valu)
@@ -750,8 +750,8 @@ ggplot(var_mean,aes(x=mis,y = valu)) + geom_bar(stat = "identity",fill="violetre
 ggplot(var_mean,aes(x=mis,y = valu)) + geom_bar(stat = "identity",fill="violetred4") +
   theme(text = element_text(family = "FangSong_GB2312")) +
   coord_flip() +
-  labs(title ="图1.中小学生违规行为频繁程度排序图", x = "", y = "频繁程度",
-       caption = "注：基于中小学教师主观评价结果(N=1097)")
+  labs(title ="�?1.中小学生违规行为频繁程度排序�?", x = "", y = "频繁程度",
+       caption = "注：基于中小学教师主观评价结�?(N=1097)")
 
 
 # example for *rec()* function
@@ -1013,8 +1013,8 @@ gg_miss_var(airquality) + labs(y = "Look at all the missing ones")
 gg_miss_var(airquality, facet = Month)
 
 library(tidyr)
-replace_na(airquality,Solar.R=99)  #Missing values turns into a value (NA –> -99)
-# Value becomes a missing value (-99 –> NA)
+replace_na(airquality,Solar.R=99)  #Missing values turns into a value (NA �?> -99)
+# Value becomes a missing value (-99 �?> NA)
 # replace NA with value
 #http://naniar.njtierney.com/articles/replace-with-na.html
 df <- tibble::tribble(
@@ -1064,6 +1064,11 @@ final_data <- drop_columns(final_data,"speed")
 plot_missing(final_data)
 plot_bar(final_data)
 plot_histogram(final_data)
+
+
+#mice----
+#install.packages("devtools")
+devtools::install_github(repo = "amices/mice")
 
 
 #dlookr------

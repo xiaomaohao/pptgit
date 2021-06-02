@@ -1,0 +1,89 @@
+---
+title: "Data Analysis"
+subtitle: "Basics"
+author: "Yangyong Ye"
+institute: "SOE, RUC"
+date: "2020/12/14 (updated: `r Sys.Date()`)"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+
+
+
+---
+class: center, middle
+
+# probability and distributions
+
+[Seeing Theory](https://seeing-theory.brown.edu/index.html)
+
+
+---
+# important distribution
+
+- normal
+- student
+- chi 2
+- F 
+---
+
+# Relation Test
+
+```{r}
+knitr::include_graphics(here::here("class6_analysis1","relation_test.png"))
+```
+
+
+---
+# estimation and inference
+---
+# t_test
+
+- one sample t test
+- two sample t test
+- paired sample t test
+
+---
+# ANOVA
+- one way anova
+- two way anova
+
+---
+# chi-2 test
+
+---
+# Interpreting correlations
+
+[An Interactive Visualization](https://rpsychologist.com/correlation/)
+
+
+---
+
+# package
+
+- stats: t.test, aov, chisq.test, cor, cor.test
+- sjplot: sjt.xtab
+- rstatix: t_test, anova_test, tuckey_hsd(), chisq_test,cor_test
+
+
+--- 
+
+# Reading for next week
+
+## [Quantitative Research Methods for Political Science, Public Policy and Public Administration: 4th Edition With Applications in R: chapter 7-16](https://bookdown.org/ripberjt/qrmbook/)
+
+## packages 
+
+- car 
+- lmtest
+- modelsummary

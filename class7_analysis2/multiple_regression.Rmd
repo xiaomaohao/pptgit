@@ -1,0 +1,39 @@
+---
+title: "Data analysis"
+subtitle: "Multiple regression"
+author: "Yangyong Ye"
+institute: "SOE, RUC"
+date: "2016/12/12 (updated: `r Sys.Date()`)"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+
+# content of this week
+
+# statistics
+
+# practice
+
+# create regression table
+
+---
+# chapter 7-9, 11-12,
+
+???
+这次是讲解了chapter 7-9, 11-12,并带学生做了其中的练习，省略了chapter10,是因为讲多元回归的时候仍然要讲诊断，有些重复。整体而言qrm是一元回归与多元回归比较好的教材。需要以下改进：1.在上一节的课程中讲t检验的时候，要讲t值的计算过程，这样的话，学生才可能更直接地理解系数的t检验过程。2.转置矩阵乘积的计算规则，11.3的推导过程需要进一步消化。3.需要更深入地理解partial effect.
+
+学生们，选的课太多了，这周都在准备“中特”，基本没有看书。因此，在以后考虑给学生布置任务时，要考虑我院学生时间分布的问题，还是要进一步减少的他们的阅读量，选择一些必须的阅读材料。
+
+---
+# next week
+
+- qrm: chapter 13-16
+
+- pca, cfa, cluster analysis
+

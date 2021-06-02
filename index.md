@@ -5,7 +5,7 @@
 
 ### Overview
 
-[Class 1](/pptgit/class1/Overview.html)
+[Class 1](/class1/Overview.html)
 
 ### Data manipulation
 
@@ -14,6 +14,27 @@
 ### Data tabulation
 
 [Class 3](/class3/tabulation.html)
+
+### Data visualiztion I
+
+[Class 4](/class4/visualization.html)
+
+### Data visualiztion II
+
+[Class 5](/class5_visual2/data_visualization2.html)
+
+### Data analysis I
+
+[Class 6](/class6_analysis1/relation_test.html)
+
+### Data analysis II
+
+[Class 7](/class7_analysis2/multiple_regression.html)
+
+### Data analysis III
+
+[Class 8](/class8_analysis/data_analysis3.html)
+
 
 ### Assignment I
 

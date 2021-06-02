@@ -1,0 +1,127 @@
+---
+title: "Data Visualiztion"
+subtitle: "With flipbookr and xaringan"
+author: "Yangyong Ye"
+date: "2020/11/20 (updated: `r Sys.Date()`)"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: [default, hygge, ninjutsu]
+    nature:
+      ratio: 16:9
+      highlightStyle: github
+      highlightLines: false
+      countIncrementalSlides: false
+---
+
+
+```{r, include = F}
+# This is the recommended set up for flipbooks
+# you might think about setting cache to TRUE as you gain practice --- building flipbooks from scratch can be time consuming
+knitr::opts_chunk$set(fig.width = 6, message = FALSE, warning = FALSE, comment = "", cache = F)
+library(flipbookr)
+library(tidyverse)
+```
+
+
+
+# Hi!
+
+---
+
+class: inverse, middle
+
+# Data Visualiztion
+
+- [Graph Type](https://www.r-graph-gallery.com/)
+
+  - **Rankings**: Barplot, lollipop/stem, 
+  
+  - **Distribution**: histgram, density, boxplot, violin, ridgeline
+  
+  - **Correlation**: scatter, correlogram, 
+  
+  - **Composition**: treemap, stacked bar, pie chart, doughnut
+
+---
+class: inverse, middle
+
+# Data Visualiztion
+
+- [Graph Type](https://www.r-graph-gallery.com/)
+
+  - **Evolution**: line, Area,
+  
+  - **Maps**: background map, 
+  
+  - **Flow**:  sankey diagram
+  
+  - **Other**: animation & combination
+
+---
+class: middle,inverse
+
+# Data Visualiztion
+
+- Useful packages
+
+  - comprehensive package: **ggplot2**
+
+  - gcookbook, ggridges, ggrepel, ggthemes
+
+  - viridis, RColorBrewer, colorspace
+
+  - gganimate, patchwork.
+
+
+---
+
+`r chunk_reveal("theme1")`
+
+```{r theme1, include=FALSE}
+
+mtcars2 <- within(mtcars, {
+  vs <- factor(vs, labels = c("V-shaped", "Straight"))
+  am <- factor(am, labels = c("Automatic", "Manual"))
+  cyl  <- factor(cyl)
+  gear <- factor(gear)
+})
+ggplot(mtcars2) +
+  geom_point(aes(x = wt, y = mpg, colour = gear)) +
+  labs(title = "Fuel economy declines as weight increases",
+       subtitle = "(1973-74)",caption = "Data from the 1974 Motor Trend US magazine.",
+       tag = "Figure 1",
+       x = "Weight (1000 lbs)",
+       y = "Fuel economy (mpg)",
+       colour = "Gears")
+
+
+```
+
+
+---
+
+
+
+```{r theme2, echo=FALSE}
+
+knitr::include_graphics(here::here("class4","ggplot2-theme-elements-reference-v2.png"))
+
+```
+
+
+---
+
+# reading for next week
+- ## R Graphics Cookbook, [Chapter 7-12](https://r-graphics.org) (required)
+- ## ggplot2: elegant graphics for data analysis, [Chapter 7-17](https://ggplot2-book.org/) (optional)
+---
+
+# 
+R Graphics Cookbook
+
+？？？
+这次课主要是带着学生完成R Graphics Cookbook这本书的第[Chapter 2-8],书的内容选择与结构还是比较好的，但是应当仔细备课，将其中的例子整合在一块讲，因为书保证一小节独立，所以全面讲的话，有重叠，另外，需要排除一些不常用的内容。
+
+
+

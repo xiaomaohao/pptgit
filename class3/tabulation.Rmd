@@ -221,10 +221,19 @@ class: inverse
 
 # NEXT WEEK
 
-- ## R Graphics Cookbook, [Chapter 2-8](https://r-graphics.org) (required)
+- ## R Graphics Cookbook, [Chapter 2-6](https://r-graphics.org) (required)
 
 - ## An Introduction R [Chapter 4](https://intro2r.com/graphics-base-r.html) (optional)
 
 - ## ggplot2:  Elegant Graphics for Data Analysis [Chapter 1-11](https://ggplot2-book.org/) (optional)
 
 - ## R4DS [Chapter 17-21](https://r4ds.had.co.nz/program-intro.html) (optional)
+
+---
+# package installation for Next week
+
+- gcookbook, ggridges, ggrepel, ggthemes
+
+- viridis, RColorBrewer, colorspace
+
+- gganimate, patchwork.
