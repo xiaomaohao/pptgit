@@ -5,41 +5,41 @@
 
 ### Overview
 
-[Class 1](/class1/Overview.html)
+[Class 1](https://xiaomaohao.github.io/pptgit/class1/Overview.html)
 
 ### Data manipulation
 
-[Class 2](/class2/data_preparation.html)
+[Class 2](https://xiaomaohao.github.io/pptgit/class2/data_preparation.html)
 
 ### Data tabulation
 
-[Class 3](/class3/tabulation.html)
+[Class 3](https://xiaomaohao.github.io/pptgit/class3/tabulation.html)
 
 ### Data visualiztion I
 
-[Class 4](/class4/visualization.html)
+[Class 4](https://xiaomaohao.github.io/pptgit/class4/visualization.html)
 
 ### Data visualiztion II
 
-[Class 5](/class5_visual2/data_visualization2.html)
+[Class 5](https://xiaomaohao.github.io/pptgit/class5_visual2/data_visualization2.html)
 
 ### Data analysis I
 
-[Class 6](/class6_analysis1/relation_test.html)
+[Class 6](https://xiaomaohao.github.io/pptgit/class6_analysis1/relation_test.html)
 
 ### Data analysis II
 
-[Class 7](/class7_analysis2/multiple_regression.html)
+[Class 7](https://xiaomaohao.github.io/pptgit/class7_analysis2/multiple_regression.html)
 
 ### Data analysis III
 
-[Class 8](/class8_analysis/data_analysis3.html)
+[Class 8](https://xiaomaohao.github.io/pptgit/class8_analysis/data_analysis3.html)
 
 
 ### Assignment I
 
-[Assignment I](/assignment/assignment_1.html)
+[Assignment I](https://xiaomaohao.github.io/pptgit/assignment/assignment_1.html)
 
 ### Assignment II
 
-[Assignment II](/assignment/assignment_2.html)
+[Assignment II](https://xiaomaohao.github.io/pptgit/assignment/assignment_2.html)
