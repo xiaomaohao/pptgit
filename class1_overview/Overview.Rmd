@@ -1,0 +1,471 @@
+---
+title: "Data Science for Education with .red[**R**]"
+subtitle: "First class"
+author: "Yangyong Ye"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: [default, hygge, ninjutsu]
+    nature:
+      ratio: 16:9
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+
+---
+
+
+# 为什么要学定量研究？
+
+
+- ### 教育研究走向实证研究
+
+- ### 政策研究必须以定量研究为前提
+
+- ### 工作需要
+
+
+```{r, include = F}
+# This is the recommended set up for flipbooks
+# you might think about setting cache to TRUE as you gain practice --- building flipbooks from scratch can be time consuming
+knitr::opts_chunk$set(fig.width = 6, message = FALSE, warning = FALSE, comment = "", cache = F)
+library(flipbookr)
+library(tidyverse)
+```
+
+---
+# 一个例子
+
+- 缺少编制？
+
+- 工资待遇低？
+
+- 高级职称指标少？
+
+- 工作任务繁重？
+
+- 新教师质量越来越差？
+
+
+
+???
+可以请学生罗列他们认为教育领域存在哪些棘手的问题？
+
+---
+# 定量研究有哪些特点
+
+- 量化
+
+- 关注于关系
+
+- 关注于总体
+
+---
+# 如何学好定量研究？
+
+- 不要恐惧
+
+- 多看论文
+
+- **练习、练习、练习**
+
+---
+# 定量研究步骤
+
+- 确定主题
+   - 目标群体（测量单位）
+   - 相关变量
+- 理论构架（提出假设）
+- 收集数据
+  - 问卷调查
+  - 二手数据（官方数据、共享数据）
+- 数据清理
+- 模型建构
+  - 模型选择
+  - 变量选择
+- 数据分析与展示
+- 结果解读
+- 启示建议
+
+
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+class: center, middle,inverse
+
+# Let's begin ou.red[**R**] journey!
+
+---
+class: center, middle,inverse
+
+# Why Language?
+
+## Fast
+## Powerful
+## Note-taking
+## Reproducible
+
+---
+class: center, middle,inverse
+
+# Why .red[**R**]?
+## small
+## versatile
+## beautiful
+## not hard to learn
+
+???
+
+In this slide, I will talk about the advantages of R and why I change from spss to R.
+
+---
+class: inverse, middle
+
+# Course Overview
+- Environment Preparation
+
+- Data fetching
+
+- Data preparation
+
+- Data tabulation
+
+- Data visulization
+
+- Data analysis
+
+- Data creation
+
+---
+class: center middle
+
+# Class Schedules
+
+```{r,echo=FALSE, fig.width=10}
+library(timevis)
+classplan <- data.frame(
+  id = 1:8,
+  content =c("week 1: \nintroduction", "week 2: data preparation", "week 3: data tabulation", "week 4: data visualization I",
+             "week 5: data visualization II", "week 6: data analysis", "week 7: data analysis", "week 8: data creation"),
+  start= c("2020-11-9","2020-11-16","2020-11-23","2020-11-30","2020-12-7",
+           "2020-12-14","2020-12-21","2020-12-28")
+)
+
+
+timevis(classplan,
+        options = list(width = "800px",height="400px"))
+```
+
+
+---
+class: inverse, middle
+
+# Preparation
+
+- Environment Preparation
+
+  - RStudio installation
+  
+  - RStudio introduction
+  
+  - R introduction
+  
+  - Common package installation (eg. **tidyverse**)
+  
+  - Self-learning material [R for data science](http://r4ds.had.co.nz/)
+
+---
+class: inverse, middle
+# Data Fetching
+- SOURCE
+
+  - 中国教育追踪调查[CEPS](http://ceps.ruc.edu.cn/)
+  
+  - 中国家庭追踪调查[CFPS](http://www.isss.pku.edu.cn/cfps/)
+  
+  - 中国社会综合调查[CGSS](http://cgss.ruc.edu.cn/)
+  
+  - 中国家庭收入调查[CHIP](http://ciid.bnu.edu.cn/chip/index.asp)
+  
+  - 中国健康与营养调查[CHNS](https://www.cpc.unc.edu/projects/china)
+
+---
+class: inverse, middle
+
+# 熟悉调查数据的步骤
+
+- user guide
+
+- questionnaire
+
+- technical report
+
+- codebook
+
+- data
+
+
+---
+class: inverse, middle
+# 官方教育统计数据
+
+- 中国教育年鉴（1949-1981，1982-1984，1985-1986,1988）[EDU](http://cyfd.cnki.com.cn/N2014080445.htm)
+  
+- 中国教育统计年鉴(1987-2017)[EDU_STAT](http://data.cnki.net/yearbook/Single/N2017120244)
+  
+- 中国教育经费统计年鉴[EDU-FINA](http://data.cnki.net/yearbook/Single/N2018070117)
+
+---
+class: inverse, middle
+# 练习
+
+1. 小学（学校、学生（招生数、在校生、毕业生）、专任教师）（高诗琪）
+2. 初中（学校、学生（招生数、在校生、毕业生）、专任教师）（耿雪）
+3. 普通高中（学校、学生（招生数、在校生、毕业生）、专任教师）（栾艺雯）
+4. 中专、职业高中、技工学校（学校、学生（招生数、在校生、毕业生）、专任教师）（高佳毅）
+5. 高职高专（学校、学生（招生数、在校生、毕业生）、专任教师）（马海燕）
+6. 普通高等学校（学校、学生（招生数、在校生、毕业生）、专任教师）（贺子容）
+7. 中师（学校、学生（招生数、在校生、毕业生）、专任教师）（陶纯珺）
+8. 师范院校（学校、学生（招生数、在校生、毕业生）、专任教师）（苗兴慧）
+
+---
+class: middle,inverse
+# Data Preparation
+
+- Data Manipulation
+
+  - recode/rename
+  
+  - subset(select/filter)
+  
+  - join/combine
+  
+  - arrange
+  
+  - summarize
+  
+  - count
+  
+  - reshape
+
+---
+class: middle,inverse
+
+# Data Tabulation
+
+- Table Type
+
+  - frequency table
+  
+  - cross-table
+  
+  - summary table
+  
+  - test-table(t, chi, anovo)
+  
+  - regression table
+
+
+---
+class: inverse, middle
+
+# Data Visualiztion
+
+- [Graph Type](https://www.r-graph-gallery.com/)
+
+  - **Rankings**: Barplot,circular barplot, Spider/Radar, parallel, lollipop/stem, circular barplot
+  
+  - **Distribution**: histgram, density, boxplot, violin, ridgeline/joyplot
+  
+  - **Correlation**: scatter, heatmap, correlogram, bubble, connected scatter, density 2D
+  
+  - **Composition**: treemap, dendrogram, venn diagram, stacked bar, pie chart, doughnut, circular packing
+
+---
+class: inverse, middle
+
+# Data Visualiztion
+
+- [Graph Type](https://www.r-graph-gallery.com/)
+
+  - **Evolution**: line, Area, stacked area, streamgraph, parallel, time series
+  
+  - **Maps**: background map, connection, choropleth, bubble, hexbin map, cartogram
+  
+  - **Flow**: network, chord diagram, hierarchical edge bundling, sankey diagram
+  
+  - **Other**: interactive, animation, 3d, color, cheat sheet.
+
+---
+class: middle,inverse
+
+# Data Visualiztion
+
+- Useful packages
+
+  - comprehensive package: **ggplot2**
+
+  - for dendrogram: **packcircles**,**ggraph**, **treemap**, **dendextend** 
+
+  - for network: **igraph**,**tidygraph**,**ggraph**
+
+  - correlation matrix: **ellipse**, **car**, **GGally**,**corrgram**
+
+  - flow diagram: **ggalluvial**
+
+
+---
+class: inverse, middle,center
+
+# Intentionally Blank
+
+---
+class: middle,inverse
+# Data Analysis
+
+- Data analysis ladder
+
+  - simple test(**t**, *chi*, anova)
+
+  - correlation
+  
+  - factor analysis
+  
+  - cluster analysis
+
+  - regresion
+
+---
+class: middle,inverse
+
+# Logistics
+- MATERIALS
+
+  - Garrett Grolemund, Hadley Wickhan. [R for data science](https://r4ds.had.co.nz/)
+  - Hadley Wickham, Ggplot2-Elegant-Graphics for Data Analysis(2nd), Springer.
+  - 王孝玲,教育统计学,华东师范大学出版社.
+  - Other(TBC)
+
+- ACCESSMENT
+  - Presence and class performance      (10%)
+  - Group survey project                (20%)
+  - Assignments                         (30%)
+  - Individual project proposal         (40%)
+ 
+  
+---
+class: middle,inverse, center
+
+# Project Example
+
+## 学生惩戒
+## 财政年报
+## 建档立卡学生就学报告
+## 高考成绩分析报告
+
+???
+高考成绩分析三个项目：（1）语数外成绩分布的问题：为什么语文的变异小数学的变异大？为什么英语不呈现正太分布？为什么数学左边是锯齿状的？哪门学科更重要？
+（2）不同群体的对比问题，男女、城乡、应往届、文理科
+（3）入学年龄对成绩的影响
+
+---
+
+# Introduction to R
+
+- R is a language and environment for statistical computing and graphics.
+
+- R is available as Free Software.
+
+- R can be extended (easily) via packages.
+
+---
+
+# 可能出错及解决方法
+
+1.R和Rstudio安装路径不能有中文；
+
+2.R和Rstudio安装目录相同；
+
+3.windows用户名包含中文，改成英文后重新安装；
+
+4.最后我通过右键-属性-以管理员身份运行，Rstudio可以打开。
+
+---
+# Example in R window
+
+`r chunk_reveal("plotex")`
+
+
+```{r, plotex}
+data(cars)
+head(cars)
+with(cars, plot(speed, dist))
+```
+
+
+
+---
+
+# Intro to Rstudio
+
+- Intro panel: source/console/environment
+
+ 1. create a script, and save it, and open
+ 
+ 2. create a project, put a data in it
+ 
+ 3. install package, like “tidyverse”, it is important to change mirror source
+ 
+ 4. options/appearance, setup theme.
+ 
+---
+# for Rstudio package installation
+
+ 
+`r chunk_reveal("plotex2")`
+
+```{r,plotex2, echo=FALSE}
+
+
+library(tidyverse)
+ggplot(mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy))
+```
+
+---
+class: middle, inverse
+
+# A Swiss-Army Knife for Data I/O [rio](https://cloud.r-project.org/web/packages/rio/vignettes/rio.html)
+
+
+```{r, plotex3,echo=TRUE}
+#install.packages("rio")
+library(rio)
+install_formats()
+```
+
+---
+
+# Homework for .red[NEXT] Week
+
+- Chapter 1-4 from Doc. Wang
+
+- Chapter 1-8 from [R4DS](https://r4ds.had.co.nz/) (required)
+
+- Chapter 1- 3 [Introducation to R](https://intro2r.com/install-r.html?s=09)(recommended)
+
+- Chapter 10 [Efficient R programming](https://csgillespie.github.io/efficientR/learning.html)
+
+- Download **CEPS** data. read documentations
+
+
+---
+# package install
+
+- data import: rio
+- data manipulation: tidyverse; sjPlot, sjmisc, janitor, skimr, naniar, visdat,
+- 
+
