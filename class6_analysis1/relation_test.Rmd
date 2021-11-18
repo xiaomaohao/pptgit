@@ -72,13 +72,17 @@ knitr::include_graphics(here::here("class6_analysis1","relation_test.png"))
 # package
 
 - stats: t.test, aov, chisq.test, cor, cor.test
+
 - sjplot: sjt.xtab
+
 - rstatix: t_test, anova_test, tuckey_hsd(), chisq_test,cor_test
 
 
 --- 
 
 # Reading for next week
+
+## [Common statistical tests are linear models](https://lindeloev.github.io/tests-as-linear/#9_teaching_materials_and_a_course_outline)
 
 ## [Quantitative Research Methods for Political Science, Public Policy and Public Administration: 4th Edition With Applications in R: chapter 7-16](https://bookdown.org/ripberjt/qrmbook/)
 

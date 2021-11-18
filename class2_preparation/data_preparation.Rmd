@@ -40,6 +40,8 @@ student <- import("/Users/yangyongye/microcloud/projects/survey_data/ceps/2014-2
   3. install package, like "tidyverse", load it.
 
   4. options/appearance, setup theme, it is important to change **mirror source**.
+  
+  5. name assignment.
 
 ---
 # Data I/O
@@ -74,7 +76,7 @@ student <- import("/Users/yangyongye/microcloud/projects/survey_data/ceps/2014-2
 
 # [tidyverse](https://www.tidyverse.org) packages:
 
-- ggplot2, for data visualisation.
+- ggplot2, for data visualization.
 
 - dplyr, for data manipulation.
 

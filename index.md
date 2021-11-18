@@ -5,19 +5,19 @@
 
 ### Overview
 
-[Class 1](https://xiaomaohao.github.io/pptgit/class1/Overview.html)
+[Class 1](https://xiaomaohao.github.io/pptgit/class1_overview/Overview.html)
 
 ### Data manipulation
 
-[Class 2](https://xiaomaohao.github.io/pptgit/class2/data_preparation.html)
+[Class 2](https://xiaomaohao.github.io/pptgit/class2_preparation/data_preparation.html)
 
 ### Data tabulation
 
-[Class 3](https://xiaomaohao.github.io/pptgit/class3/tabulation.html)
+[Class 3](https://xiaomaohao.github.io/pptgit/class3_tabulation/tabulation.html)
 
 ### Data visualiztion I
 
-[Class 4](https://xiaomaohao.github.io/pptgit/class4/visualization.html)
+[Class 4](https://xiaomaohao.github.io/pptgit/class4_visual1/visualization.html)
 
 ### Data visualiztion II
 
@@ -43,3 +43,9 @@
 ### Assignment II
 
 [Assignment II](https://xiaomaohao.github.io/pptgit/assignment/assignment_2.html)
+
+## Documents
+
+## DATA
+
+[Data(提取码: uyt1)](https://pan.baidu.com/s/1nf9GApraJ-2aGCJubRe-WQ)
